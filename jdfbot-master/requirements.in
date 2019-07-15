@@ -1,0 +1,6 @@
+fbmq
+flask
+flask_migrate
+flask_sqlalchemy
+logzero
+psycopg2-binary

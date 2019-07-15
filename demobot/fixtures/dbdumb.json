@@ -1,0 +1,1484 @@
+[
+  {
+    "model": "app.group",
+    "fields": {
+      "id": "1",
+      "name": "Sion Lion",
+      "state": "cessation",
+      "created_date": "2018-01-01 13:32:10"
+    }
+  },
+  {
+    "model": "app.group",
+    "fields": {
+      "id": "2",
+      "name": "Sierre",
+      "state": "tracker",
+      "created_date": "2018-07-15 18:21:18"
+    }
+  },
+
+   {
+    "model": "app.group",
+    "fields": {
+      "id": "3",
+      "name": "Conthey",
+      "state": "recruitment",
+      "created_date": "2019-01-15 09:32:28"
+    }
+  }
+  ,
+
+  {
+    "pk": "f7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Jon",
+      "last_name" : "Doe",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350940350,
+      "last_interaction": "2018-02-21 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "a7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Susan",
+      "last_name" : "Wojciki",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350940351,
+      "last_interaction": "2018-02-21 13:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "b7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Mark",
+      "last_name" : "Zukerburg",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350940353,
+      "last_interaction": "2018-02-21 18:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "c7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Amy",
+      "last_name" : "Hood",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350940354,
+      "last_interaction": "2018-02-21 13:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "d7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Tim",
+      "last_name" : "Cook",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350940355,
+      "last_interaction": "2018-02-21 18:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "e7884761-43e9-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Bill",
+      "last_name" : "Gates",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350940356,
+      "last_interaction": "2018-02-21 19:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e0-45f0-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Sherlyl",
+      "last_name" : "Sandberg",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350940357,
+      "last_interaction": "2018-02-21 13:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "7884761-43e9-45f0-a729-c052942106041",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Sathya",
+      "last_name" : "Nadel",
+      "gender":"SEX_M",
+      "language" : "de",
+      "facebook_id" : 2082987350940358,
+      "last_interaction": "2018-02-21 21:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f1-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Angela",
+      "last_name" : "Ahrendts",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350940359,
+      "last_interaction": "2018-02-21 22:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f2-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Donald",
+      "last_name" : "Trimph",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350941351,
+      "last_interaction": "2018-04-22 10:52:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f3-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Kim",
+      "last_name" : "Jing",
+      "gender":"SEX_M",
+     "language" : "fr",
+      "facebook_id" : 2082987350942351,
+      "last_interaction": "2018-04-22 10:53:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f4-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"May",
+      "last_name" : "June",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350943351,
+      "last_interaction": "2018-04-22 11:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f5-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Nir",
+      "last_name" : "Seet",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350944351,
+      "last_interaction": "2018-04-22 15:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f6-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Vlad",
+      "last_name" : "putout",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350945351,
+      "last_interaction": "2018-04-22 10:52:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f7-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Boris",
+      "last_name" : "Son",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350946351,
+      "last_interaction": "2018-04-22 10:53:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f8-a729-c05294210614",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Ming",
+      "last_name" : "Su",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2082987350967351,
+      "last_interaction": "2018-04-22 11:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7184761-43e9-45f9-a729-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Duck",
+      "last_name" : "Strong",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2082987350968351,
+      "last_interaction": "2018-04-22 15:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f1-a710-c01294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Spider",
+      "last_name" : "Man",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2182987350962350,
+      "last_interaction": "2018-03-21 10:32:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "a7884761-43e9-45f0-a711-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Thanos",
+      "last_name" : "Americ",
+      "gender":"SEX_M",
+      "language" : "de",
+      "facebook_id" : 2282987350963351,
+      "last_interaction": "2018-03-21 13:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "b7884761-43e9-45f0-a712-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Iron",
+      "last_name" : "Man",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2382987350964353,
+      "last_interaction": "2018-03-21 18:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "c7884761-43e9-45f0-a713-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Captain",
+      "last_name" : "America",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2482987350940354,
+      "last_interaction": "2018-03-21 13:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "d7884761-43e9-45f0-a714-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Hulk",
+      "last_name" : "Bulk",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2582987350940355,
+      "last_interaction": "2018-03-21 18:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "e7884761-43e9-45f0-a715-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Theo",
+      "last_name" : "Thur",
+      "gender":"SEX_M",
+      "language" : "de",
+      "facebook_id" : 2682987350940356,
+      "last_interaction": "2018-03-21 19:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+
+
+  {
+    "pk": "7884761-43e9-45f0-a716-c052942106041",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Clint",
+      "last_name" : "Barton",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2782987350940358,
+      "last_interaction": "2018-03-21 21:52:10",
+      "state" : "jdfbots.chatbot.tracker.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f1-a717-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Star",
+      "last_name" : "Lord",
+      "gender":"SEX_M",
+      "language" : "de",
+      "facebook_id" : 2882987350940359,
+      "last_interaction": "2018-03-21 22:52:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f2-a718-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Ant",
+      "last_name" : "Man",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2982987350941351,
+      "last_interaction": "2018-03-22 10:52:10",
+      "state" : "jdfbots.chatbot.tracker.end",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-46f3-a719-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Black",
+      "last_name" : "Panther",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2092987350942351,
+      "last_interaction": "2018-04-22 10:53:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f4-a720-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Gamora",
+      "last_name" : "Wit",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2002987350943351,
+      "last_interaction": "2018-04-22 11:52:10",
+      "state" : "jdfbots.chatbot.tracker.end",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f5-a721-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Nick",
+      "last_name" : "Fury",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2012987350944351,
+      "last_interaction": "2018-03-22 15:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f6-a722-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Quick",
+      "last_name" : "Silver",
+      "gender":"SEX_M",
+      "language" : "de",
+      "facebook_id" : 2022987350945351,
+      "last_interaction": "2018-03-22 10:52:10",
+      "state" : "jdfbots.chatbot.cessation.RequireHelp",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f7-a723-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"War",
+      "last_name" : "Machine",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2032987350946351,
+      "last_interaction": "2018-04-22 10:53:10",
+      "state" : "jdfbots.chatbot.tracker.start",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f8-a724-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Magneto",
+      "last_name" : "Su",
+      "gender":"SEX_M",
+     "language" : "de",
+      "facebook_id" : 2042987350947351,
+      "last_interaction": "2018-04-22 11:52:10",
+      "state" : "jdfbots.chatbot.tracker.end",
+      "gid" : "1"
+
+    }
+
+  },
+
+  {
+    "pk": "f7884761-43e9-45f8-a725-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Mister",
+      "last_name" : "Fantastic",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2052987350961351,
+      "last_interaction": "2018-04-22 15:52:10",
+      "state" : "jdfbots.chatbot.cessation",
+      "gid" : "1"
+
+    }
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a600-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Eddard",
+      "last_name" : "Stark",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2080187350940350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a601-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Gendry",
+      "last_name" : "joe",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081187350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a602-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Jorah",
+      "last_name" : "Mormont",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081287350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+  {
+    "pk": "f7884761-43e9-45f0-a603-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Daenerys",
+      "last_name" : "Tan",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2081487350940350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a604-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Samwell",
+      "last_name" : "Tarly",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081587351940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a605-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Arya",
+      "last_name" : "Stark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2081687350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a606-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Robb",
+      "last_name" : "Stark",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2080187351140350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a607-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Bran",
+      "last_name" : "joe",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081187351240350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a608-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Jaime",
+      "last_name" : "Lann",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081287351340350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a609-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Theon",
+      "last_name" : "Grey",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2080187351440350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a610-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Tyrion",
+      "last_name" : "Lann",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2081187351540350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a611-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Sandor",
+      "last_name" : "Cleg",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2001287351640350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+,
+  {
+    "pk": "f7884761-43e9-45f0-a612-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Sansa",
+      "last_name" : "Stark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2010187350940350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a613-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Brienne",
+      "last_name" : "Tarth",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2021187350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a614-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Margery",
+      "last_name" : "Tyrell",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2031287350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+  {
+    "pk": "f7884761-43e9-45f0-a615-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Catelyn",
+      "last_name" : "Stark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2041487350940350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a616-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Olenna",
+      "last_name" : "Tyerll",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2051587351940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a617-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Shae",
+      "last_name" : "Grey",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2061687350940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a618-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Yara",
+      "last_name" : "Grey",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2070187351140350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a619-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Ygnitte",
+      "last_name" : "Tyrell",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2101187351240350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a620-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Gilly",
+      "last_name" : "Lann",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2111287351340350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a621-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Lysa",
+      "last_name" : "Arryn",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 2120187351440350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a622-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Tyrion",
+      "last_name" : "Lann",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 2131187351540350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a623-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Obara",
+      "last_name" : "Sand",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3001287351640350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+,
+  {
+    "pk": "f7884761-43e9-45f0-a624-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Joey",
+      "last_name" : "Tribbiani",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3010187350940350,
+      "last_interaction": "2019-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "3"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a625-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Ross",
+      "last_name" : "Galler",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3021187350940350,
+      "last_interaction": "2019-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "3"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a626-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Chandler",
+      "last_name" : "Bing",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3031287350940350,
+      "last_interaction": "2019-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "3"
+
+    }
+
+
+  }
+  ,
+  {
+    "pk": "f7884761-43e9-45f0-a627-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Rachel",
+      "last_name" : "Green",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3041487350940350,
+      "last_interaction": "2019-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "3"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a627-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Samwell",
+      "last_name" : "Tarly",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3051587351940350,
+      "last_interaction": "2018-06-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a628-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Penny",
+      "last_name" : "Stark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3061687350940350,
+      "last_interaction": "2018-08-10 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a629-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Sheldon",
+      "last_name" : "Cooper",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3070187351140350,
+      "last_interaction": "2018-08-10 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a630-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Leonard",
+      "last_name" : "Hofstadter",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3081187351240350,
+      "last_interaction": "2018-08-10 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a631-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Raj",
+      "last_name" : "Koothra",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3091287351340350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a632-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Howard",
+      "last_name" : "Wolow",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3100187351440350,
+      "last_interaction": "2018-08-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a633-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Stuart",
+      "last_name" : "Bloom",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3111187351540350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a634-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Barry",
+      "last_name" : "Krip",
+      "gender":"SEX_M",
+     "language" : "fr",
+      "facebook_id" : 3121287351640350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+,
+  {
+    "pk": "f7884761-43e9-45f0-a635-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Amy",
+      "last_name" : "Fararah",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3130187350940350,
+      "last_interaction": "2018-08-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.Start",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a636-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Priya",
+      "last_name" : "Koothra",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3141187350940350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a637-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Emiley",
+      "last_name" : "Sweeney",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3151287350940350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+  {
+    "pk": "f7884761-43e9-45f0-a638-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Lucy",
+      "last_name" : "Stark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3161487350940350,
+      "last_interaction": "2018-08-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a639-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Natalia",
+      "last_name" : "Mark",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3171587351940350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a640-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Aarti",
+      "last_name" : "Mann",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3181687350940350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a641-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Yara",
+      "last_name" : "Grey",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3190187351140350,
+      "last_interaction": "2018-06-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a642-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Anushka",
+      "last_name" : "Mani",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3201187351240350,
+      "last_interaction": "2018-08-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a643-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Priya",
+      "last_name" : "Pooran",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3211287351340350,
+      "last_interaction": "2018-09-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  },
+  {
+    "pk": "f7884761-43e9-45f0-a644-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Pooja",
+      "last_name" : "Butler",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3220187351440350,
+      "last_interaction": "2018-09-12 10:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+  },
+
+    {
+    "pk": "f7884761-43e9-45f0-a645-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Mahesh",
+      "last_name" : "Babu",
+      "gender":"SEX_M",
+      "language" : "fr",
+      "facebook_id" : 3231187351540350,
+      "last_interaction": "2018-09-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+  ,
+
+    {
+    "pk": "f7884761-43e9-45f0-a646-c05294210604",
+    "model": "app.user",
+    "fields": {
+      "first_name" :"Michel",
+      "last_name" : "Sand",
+      "gender":"SEX_W",
+      "language" : "fr",
+      "facebook_id" : 3241287351640350,
+      "last_interaction": "2018-09-12 11:32:10",
+      "state" : "jdfbots.chatbot.recruitment.End",
+      "gid" : "2"
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

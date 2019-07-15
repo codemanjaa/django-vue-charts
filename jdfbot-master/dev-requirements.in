@@ -1,0 +1,20 @@
+-r requirements.txt
+
+autoflake
+autopep8
+black
+flake8
+ipdb
+ipython
+isort
+mypy
+pep257
+pip-tools
+pre-commit
+ptvsd
+pylint
+python-dotenv
+rope
+safety
+watchdog
+yapf

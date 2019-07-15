@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+    - id: python-safety-dependencies-check
+      name: safety
+      language: system
+      entry: safety
+      args: [check, --full-report, -r]
+      files: requirements
+    - id: pylint
+      name: pylint
+      entry: python -m pylint.__main__
+      language: system
+      types: [python]
+      exclude: migrations/

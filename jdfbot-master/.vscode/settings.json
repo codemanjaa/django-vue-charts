@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
+    "editor.renderWhitespace": "none",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "venv/": true,
+        ".mypy_cache": true
+    },
+}
