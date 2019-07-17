@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Group
-from .models import User
+from .models import User, Data
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -13,6 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
         #fields = ('first_name', 'last_name','gender','facebook_id','last_interaction','state','gid')
+
+
+class DataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Data
+        fields = '__all__'
 
 class GroupStatSerializer(serializers.ModelSerializer):
     gid = serializers.CharField(max_length=32)

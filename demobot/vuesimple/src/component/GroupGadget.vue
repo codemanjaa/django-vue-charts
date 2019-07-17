@@ -29,8 +29,8 @@
           <div class="col">
             <select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange">
             <option value="" v-show="">Select a user</option>
-              <option v-for="user in groups">
-               {{user.name}}
+              <option v-for="user in groupusers" >
+               {{user.first_name}}
               </option>
             </select>
           </div>
@@ -140,7 +140,7 @@
           this.groupgadget = data;
         });
 
-          apiService.getGroupUserList('?gid='+this.selected).then((data) => {
+          apiService.getUsers('?gid='+this.selected).then((data) => {
             console.log(data)
             this.groupusers = data;
           });

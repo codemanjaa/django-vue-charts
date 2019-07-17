@@ -1,23 +1,29 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <sidebar-menu :menu="menu"/>
       </div>
 
 
-      <div class="col-8">
+      <div class="col-9">
 
-        <group-gadget></group-gadget>
+        <router-view/>
+        <!--<group-gadget></group-gadget>-->
       </div>
     </div>
     <div class="row">
-       <div class="col-4">
-       </div>
-      <div class="col-8">
-        <UserProfile></UserProfile>
+      <!--<user-profile></user-profile>-->
+      <div class="col-4">
       </div>
+      <!--<div class="col-8">-->
+      <!--<UserProfile></UserProfile>-->
+      <!--</div>-->
     </div>
+    <div id="nav">
+      <!--<router-link to="/groups">Groups</router-link>-->
+    </div>
+
   </div>
 </template>
 
@@ -69,22 +75,16 @@
           {
             title: 'Group Management',
             icon: 'fa fa-chart-area',
-            child: [
-              {
-                href: '/api/group/',
-                title: 'Groups Statistics',
-              }
-            ]
+            href: '/groups',
+            component: GroupGadget,
+            child: []
           },
           {
             title: 'User Management',
             icon: 'fa fa-chart-area',
-            child: [
-              {
-                href: '/api/user',
-                title: 'Profile',
-              }
-            ]
+            href: '/users',
+            component: UserProfile,
+            child: []
           },
           {
             title: 'Setting',

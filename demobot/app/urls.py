@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r'group', views.GroupViewSet)
 router.register(r'user', views.UserViewSet)
 router.register(r'groupstat',views.GroupStatView)
+router.register(r'datastat', views.DataViewSet)
 
 
 

@@ -19,6 +19,7 @@ from datetime import datetime
 #
 #     def __str__(self):
 #         return self.name
+from rest_framework.fields import JSONField
 
 
 class Group(models.Model):
@@ -54,13 +55,16 @@ class User(models.Model):
 
 
 class Data(models.Model):
-    user = models.ForeignKey('User', models.DO_NOTHING, db_column='user')
+    #user = models.ForeignKey('User', models.DO_NOTHING, db_column='user')
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey('User',models.DO_NOTHING, db_column='user')
     clz = models.CharField(max_length=255)
     value = models.TextField(blank=True, null=True)
+    #value = JSONField()
 
     class Meta:
         managed = False
         db_table = 'data'
-        unique_together = (('user', 'clz'),)
+        unique_together = (('user', 'clz'), )
 
 

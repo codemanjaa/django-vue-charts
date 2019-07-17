@@ -6,6 +6,7 @@ import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import router from './router.js'
 
 
 Vue.use(BootstrapVue)
@@ -24,6 +25,7 @@ new Vue({
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
     axios.defaults.xsrfCookieName = 'csrftoken'
   },
+  router,
 
   mounted (){
     axios

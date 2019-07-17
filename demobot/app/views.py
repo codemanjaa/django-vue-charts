@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from .serializers import GroupSerializer, UserSerializer, GroupStatSerializer, GroupTestSerializer, \
-  GroupGadgetSerializer
+  GroupGadgetSerializer, DataSerializer
 from rest_framework.response import Response
-from .models import Group, User
+from .models import Group, User, Data
 from rest_framework import viewsets
 
 
@@ -53,6 +53,10 @@ class UserViewSet(viewsets.ModelViewSet):
             users = User.objects.filter(gid=gid)
             return users
 
+
+class DataViewSet(viewsets.ModelViewSet):
+    queryset = Data.objects.all()
+    serializer_class = DataSerializer
 
 
 class GroupStatView(viewsets.ReadOnlyModelViewSet):
@@ -132,3 +136,10 @@ class GroupUserView(APIView):
         return Response({groupuserlist})
       else:
         return Response('None')
+
+
+
+
+
+
+
