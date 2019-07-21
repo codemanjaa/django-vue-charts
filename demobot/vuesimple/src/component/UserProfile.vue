@@ -48,7 +48,7 @@
               <td>{{user.gid}}</td>
               <td>{{user.last_interaction}}</td>
               <td>
-                <button class="btn-secondary ">View</button>
+                <button class="btn-secondary" >View</button>
               </td>
             </tr>
             </tbody>
@@ -151,6 +151,8 @@
 
 
       },
+
+
 
 
     },

@@ -18,6 +18,7 @@ urlpatterns = [
   path('groupgadget/', views.GroupGadgetView.as_view()),
   path('groupuserlist/', views.GroupUserView.as_view()),
   path('groupchart/', views.GroupChartView.as_view()),
+  path('userprofile/', views.UserProfileView.as_view()),
 ]
 
 

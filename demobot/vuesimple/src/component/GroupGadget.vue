@@ -27,7 +27,7 @@
         </div>
         <div>
           <div class="col">
-            <select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange">
+            <select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange" autocomplete="on">
               <option value="" v-show="">Select a user</option>
               <option v-for="user in groupusers">
                 {{user.first_name}}

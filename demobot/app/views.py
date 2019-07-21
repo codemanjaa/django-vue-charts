@@ -163,6 +163,148 @@ class GroupChartView(APIView):
           return Response(cigars)
 
 
+class UserProfileView(APIView):
+
+    def get(self, request):
+        totalcigars=0
+        desirelow = 0
+        desirenone=0
+        desiremedium=0
+        desirehigh=0
+        desireextreme=0
+
+
+        moodstressed = 0
+        moodtired = 0
+        moodneutral = 0
+        moodangry = 0
+        moodworried = 0
+        moodsad = 0
+        moodhappy = 0
+        moodrelaxed = 0
+        moodbored = 0
+
+        aloneyes = 0
+        aloneno = 0
+
+        drivingyes = 0
+        drivingno = 0
+
+        contextprive = 0
+        contextprof = 0
+
+
+
+        # CONTEXT_PRIVE
+        # CONTEXT_PROF
+        #
+        # DRIVING_YES
+        # DRIVING_NO
+        #
+        #
+        # ALONE_YES
+        # ALONE_NO
+        #
+        #
+        #
+        #
+        # MOOD_STRESSED
+        # MOOD_TIRED
+        # MOOD_NEUTRAL
+        # MOOD_WORRIED
+        # MOOD_ANGRY
+        # MOOD_SAD
+        # MOOD_HAPPY
+        # MOOD_RELAXED
+        # MOOD_BORED
+
+        id = self.request.query_params.get('id')
+        queryset = Data.objects.filter(user='f788476143e945f0a729c05294210604', clz='jdfbots.chatbot.tracker').values(
+          'value').first()
+        # queryset = Data.objects.filter(user=id,  clz='jdfbots.chatbot.tracker').values(
+        #   'value')
+        data = queryset['value']
+        jsondata = json.loads(data)
+        cigars = jsondata['cigarettes']
+        totalcigars = len(cigars)
+
+        # Calculate the desire low numbers
+# Desire
+        for element in cigars:
+           option=element['desire']
+           if(option=='DESIRE_LOW'):
+             desirelow = desirelow + 1
+           elif(option=='DESIRE_NONE'):
+             desirenone = desirenone +1
+           elif (option == 'DESIRE_MEDIUM'):
+             desiremedium = desiremedium + 1
+           elif(option== 'DESIRE_HIGH'):
+             desirehigh = desirehigh+1
+           else:
+             desireextreme= desireextreme+1
+
+
+        # desirechartdata  = {"desirechart":[{
+        #   'desirelow': desirelow,
+        #   'desirenone': desirenone,
+        #   'desiremedium': desiremedium,
+        #   'desirehigh': desirehigh,
+        #   'desireextreme': desireextreme
+        #
+        # }]}
+        # desirechartobject = json.loads(desirechartdata)
+
+
+# Mood
+        for element in cigars:
+           option=element['mood']
+           if(option=='MOOD_STRESSED'):
+             moodstressed = moodstressed + 1
+           elif(option=='MOOD_TIRED'):
+             moodtired = moodtired +1
+           elif (option == 'MOOD_NEUTRAL'):
+             moodneutral = moodneutral + 1
+           elif(option== 'MOOD_WORRIED'):
+             moodworried = moodworried+1
+           elif(option=='MOOD_ANGRY'):
+             moodangry = moodangry +1
+           elif(option=='MOOD_SAD'):
+             moodsad = moodsad +1
+           elif(option=='MOOD_HAPPY'):
+             moodhappy = moodhappy + 1
+           elif(option=='MOOD_RELAXED'):
+             moodrelaxed = moodrelaxed + 1
+           else:
+             moodbored= moodbored+1
+
+
+# Driving
+        for element in cigars:
+            option = element['driving']
+            if(option == 'DRIVING_NO'):
+                drivingno = drivingno + 1
+            else:
+                drivingyes = drivingyes + 1
+
+
+#Context
+        for element in cigars:
+          option = element['context']
+          if(option == 'CONTEXT_PRIVE'):
+              contextprive = contextprive + 1
+          else:
+              contextprof = contextprof + 1
+
+
+
+
+        return Response({'priv':moodstressed,'prof':moodhappy })
+        return Response({'totalcigars':totalcigars, 'desirelow':desirelow, 'desirenone':desirenone,
+                         'desiremedium':desiremedium, 'desirehigh':desirehigh, 'desireextreme':desireextreme})
+
+
+
+
 
 
 

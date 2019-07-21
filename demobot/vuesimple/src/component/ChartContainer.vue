@@ -52,23 +52,12 @@
           ],
         }
         return pie
-
-
-
-
-
-
       }
     },
 
     mounted() {
       var c = this.drawchart()
-      this.renderChart(c)
-
-
-
-
-
+      this.loaded = true
     },
     computed: {
 
