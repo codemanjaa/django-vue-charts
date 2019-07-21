@@ -2,6 +2,7 @@ from django.contrib.auth.models import Group
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
+from rest_framework.utils import json
 from rest_framework.views import APIView
 from .serializers import GroupSerializer, UserSerializer, GroupStatSerializer, GroupTestSerializer, \
   GroupGadgetSerializer, DataSerializer
@@ -136,6 +137,32 @@ class GroupUserView(APIView):
         return Response({groupuserlist})
       else:
         return Response('None')
+
+
+class GroupChartView(APIView):
+
+    def get(self, request):
+
+        queryset = Data.objects.filter(clz='jdfbots.chatbot.tracker').values(
+        'value')
+        list_size = len(queryset)
+        if(list_size==1):
+            jsondata = queryset.first()
+        elif(list_size > 1):
+          #jdata = queryset.first()
+          queryset = Data.objects.filter(clz='jdfbots.chatbot.tracker').values(
+            'value').first()
+          result = []
+          # for value in queryset:
+          #      cigarettes = value['cigerettes']
+          #      for cigars in cigarettes:
+          #          result = dict()
+          data = queryset['value']
+          jsondata = json.loads(data)
+          cigars = jsondata['cigarettes']
+          return Response(cigars)
+
+
 
 
 

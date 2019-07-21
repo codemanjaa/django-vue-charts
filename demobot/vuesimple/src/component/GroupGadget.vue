@@ -11,11 +11,11 @@
         <div class="col-9">
           <div class="dropdown">
 
-            <select name="grouplist" id="grouplist" v-model="selected"  v-on:change="onChange">
-              <option value="" v-show="getGroupGadget">Select a Group</option>
+            <select name="grouplist" id="grouplist" v-model="selected" v-on:change="onChange">
+              <option value="">Select a Group</option>
               <option value="all">all</option>
               <option v-for="group in groups" v-bind:value="group.id">
-               {{group.id}} - {{group.name}}
+                {{group.id}} - {{group.name}}
               </option>
             </select>
 
@@ -28,9 +28,9 @@
         <div>
           <div class="col">
             <select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange">
-            <option value="" v-show="">Select a user</option>
-              <option v-for="user in groupusers" >
-               {{user.first_name}}
+              <option value="" v-show="">Select a user</option>
+              <option v-for="user in groupusers">
+                {{user.first_name}}
               </option>
             </select>
           </div>
@@ -44,7 +44,7 @@
           <div class="card bg-light mb-sm-n1" style="max-width: 10rem">
             <div class="card-header">State</div>
             <div class="card-body center">
-              <center><h5>{{groupgadget.state}}</h5></center>
+              <center><h6>{{groupgadget.state}}</h6></center>
 
             </div>
 
@@ -78,6 +78,41 @@
 
       </div>
     </div>
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Gender Ratio</h6>
+        </div>
+         <chart-container>
+
+        </chart-container>
+
+        <!--<group-chart></group-chart>-->
+      </div>
+
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Dynamic Ratio</h6>
+        </div>
+
+        <!--<div class="app">-->
+          <!--{{ dataChart }}-->
+          <!--<button v-on:click="changeData">Change data</button>-->
+          <!--<line-chart :data="dataChart" :options="{responsive: true, maintainAspectRatio: false}"></line-chart>-->
+
+        <!--</div>-->
+
+        <group-chart>
+
+        </group-chart>
+
+        <!--</chart-container>-->
+      </div>
+    </div>
+
   </div>
 
 
@@ -86,17 +121,21 @@
 <script>
 
   import {APIService} from "../api/APIService";
+  import GroupChart from './GroupChart'
 
   const APU_URL = 'http://localhost:8000';
   const apiService = new APIService();
 
+  import {mapState} from "vuex"
+  import ChartContainer from "./ChartContainer";
+  import GroupLineChart from './GroupLineChart'
+
   export default {
     name: "GroupGadget",
 
-    components: {},
+    components: {ChartContainer, GroupChart},
     data() {
       return {
-        groupgadget: [],
         groups: [],
         selected: '',
         groupusers: [],
@@ -108,10 +147,7 @@
     },
     methods: {
       getGroupGadget() {
-        apiService.getGroupGadget().then(data => {
-          console.log(data);
-          this.groupgadget = data;
-        });
+        this.$store.dispatch('load_groupgadget')
       },
       getGroups() {
 
@@ -121,8 +157,8 @@
           this.numberOfGroups = data.length;
         });
       },
-      getGroupUserList(){
-        apiService.getGroupUserList().then(data =>{
+      getGroupUserList() {
+        apiService.getGroupUserList().then(data => {
           this.groupusers = data;
         })
       },
@@ -131,34 +167,34 @@
         console.log(self.groups);
         var gid = this.selected;
         console.log(gid);
-       if(gid==""){
-         this.getGroupGadget();
-       }
-       else{
-          apiService.getGroupGadget('?gid='+this.selected).then((data) => {
-          console.log(data)
-          this.groupgadget = data;
-        });
+        if (gid == "") {
+          this.getGroupGadget();
+        } else {
+          //apiService.getGroupGadget('?gid='+this.selected).then((data) => {
+          this.$store.dispatch('load_groupgadget_with_id', this.selected)
+          //console.log(data)
+          //this.groupgadget = data;
+          //});
 
-          apiService.getUsers('?gid='+this.selected).then((data) => {
+          apiService.getUsers('?gid=' + this.selected).then((data) => {
             console.log(data)
             this.groupusers = data;
           });
 
-       }
+        }
 
 
       },
 
 
-
     },
     mounted() {
 
-     // this.getGroupGadget();
+      // this.getGroupGadget();
       this.getGroups();
 
     },
+    computed: mapState(["groupgadget"])
   };
 </script>
 

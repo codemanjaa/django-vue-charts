@@ -17,6 +17,7 @@ urlpatterns = [
   path('', include(router.urls)),
   path('groupgadget/', views.GroupGadgetView.as_view()),
   path('groupuserlist/', views.GroupUserView.as_view()),
+  path('groupchart/', views.GroupChartView.as_view()),
 ]
 
 
