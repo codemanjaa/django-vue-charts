@@ -1,0 +1,30 @@
+[
+  {
+    "model": "app.group",
+    "fields": {
+      "id": "1",
+      "name": "Sion Lion",
+      "state": "cessation",
+      "created_date": "2018-01-01 13:32:10"
+    }
+  },
+  {
+    "model": "app.group",
+    "fields": {
+      "id": "2",
+      "name": "Sierre",
+      "state": "tracker",
+      "created_date": "2018-07-15 18:21:18"
+    }
+  },
+
+   {
+    "model": "app.group",
+    "fields": {
+      "id": "3",
+      "name": "Conthey",
+      "state": "recruitment",
+      "created_date": "2019-01-15 09:32:28"
+    }
+  }
+]

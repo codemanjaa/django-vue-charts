@@ -1,0 +1,29 @@
+<template>
+
+</template>
+
+<script>
+  import {Line} from 'vue-chart.js'
+
+  export default {
+    extends: Line,
+    name: "LineChart",
+    props: {
+    chartdata: {
+      type: Object,
+      default: null
+    },
+    options: {
+      type: Object,
+      default: null
+    }
+  },
+  mounted () {
+    this.renderChart(this.chartdata, this.options)
+  }
+  }
+</script>
+
+<style scoped>
+
+</style>
