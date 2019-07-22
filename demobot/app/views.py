@@ -194,30 +194,6 @@ class UserProfileView(APIView):
         contextprof = 0
 
 
-
-        # CONTEXT_PRIVE
-        # CONTEXT_PROF
-        #
-        # DRIVING_YES
-        # DRIVING_NO
-        #
-        #
-        # ALONE_YES
-        # ALONE_NO
-        #
-        #
-        #
-        #
-        # MOOD_STRESSED
-        # MOOD_TIRED
-        # MOOD_NEUTRAL
-        # MOOD_WORRIED
-        # MOOD_ANGRY
-        # MOOD_SAD
-        # MOOD_HAPPY
-        # MOOD_RELAXED
-        # MOOD_BORED
-
         id = self.request.query_params.get('id')
         queryset = Data.objects.filter(user='f788476143e945f0a729c05294210604', clz='jdfbots.chatbot.tracker').values(
           'value').first()
@@ -294,11 +270,37 @@ class UserProfileView(APIView):
               contextprive = contextprive + 1
           else:
               contextprof = contextprof + 1
+#Alone
+        for element in cigars:
+          option = element['alone']
+          if(option=='ALONE_YES'):
+            aloneyes = aloneyes +1
+          else:
+            aloneno = aloneno + 1
+
+          chartdata =  {
+        'labels': ['ALONE_YES', 'ALONE_NO'],
+        'datasets': [{
+            'label': 'ALONE',
+            'data': [aloneyes, aloneno],
+            'backgroundColor': [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+
+            ],
+            'borderColor': [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+
+            ],
+            'borderWidth': 1
+        }]
+    }
 
 
 
-
-        return Response({'priv':moodstressed,'prof':moodhappy })
+       # return Response({'chartdata':chartdata})
         return Response({'totalcigars':totalcigars, 'desirelow':desirelow, 'desirenone':desirenone,
                          'desiremedium':desiremedium, 'desirehigh':desirehigh, 'desireextreme':desireextreme})
 

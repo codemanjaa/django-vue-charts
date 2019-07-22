@@ -12,14 +12,34 @@ export default new Vuex.Store({
   state: {
     groupgadget : [],
     chartdata : [],
-    desiredata: [],
+    userdesiredata: {},
+
+    piechartdata: {
+          labels: ['Men', 'Women'],
+          datasets: [
+            {
+
+              label: 'Gender Ratio',
+              backgroundColor: ['#3a2ff8', '#ef5ef9'],
+              data: []
+            }
+          ],
+        },
   },
+
+
   mutations: {
     SET_GROUPGADGET(state, groupgadget){
       console.log('commiting mutation '+groupgadget)
       state.groupgadget = groupgadget
       state.chartdata = groupgadget
+    },
+
+    SET_USERDESIREDATA(state, userdesiredata ){
+      state.userdesiredata = userdesiredata
     }
+
+
   },
   actions: {
     load_groupgadget({commit}){
@@ -33,11 +53,19 @@ export default new Vuex.Store({
         console.log('calling mutation')
           commit('SET_GROUPGADGET', data)
         });
+    },
+    LOAD_USERDESIREDATA({commit}){
+      apiService.getUserProfile().then(data => {
+        commit('SET_USERDESIREDATA', data)
+      });
     }
   },
   getters: {
     getChart(state){
       return state.chartdata;
+    },
+    getDesire(state){
+      return state.userdesiredata;
     }
   }
 })

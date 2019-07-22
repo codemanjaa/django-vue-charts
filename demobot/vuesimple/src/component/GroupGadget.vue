@@ -83,7 +83,7 @@
       <div class="col-6">
         <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Gender Ratio</h6>
+          <h6 class="card-title">Gender Stats</h6>
         </div>
          <chart-container>
 
@@ -95,21 +95,10 @@
       <div class="col-6">
         <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Dynamic Ratio</h6>
+          <h6 class="card-title">Desire Stas</h6>
         </div>
 
-        <!--<div class="app">-->
-          <!--{{ dataChart }}-->
-          <!--<button v-on:click="changeData">Change data</button>-->
-          <!--<line-chart :data="dataChart" :options="{responsive: true, maintainAspectRatio: false}"></line-chart>-->
-
-        <!--</div>-->
-
-        <group-chart>
-
-        </group-chart>
-
-        <!--</chart-container>-->
+        <user-bar-container></user-bar-container>
       </div>
     </div>
 
@@ -129,11 +118,12 @@
   import {mapState} from "vuex"
   import ChartContainer from "./ChartContainer";
   import GroupLineChart from './GroupLineChart'
+  import UserBarContainer from "./UserBarContainer";
 
   export default {
     name: "GroupGadget",
 
-    components: {ChartContainer, GroupChart},
+    components: {UserBarContainer, ChartContainer, GroupChart},
     data() {
       return {
         groups: [],
@@ -148,6 +138,7 @@
     methods: {
       getGroupGadget() {
         this.$store.dispatch('load_groupgadget')
+
       },
       getGroups() {
 
@@ -172,6 +163,7 @@
         } else {
           //apiService.getGroupGadget('?gid='+this.selected).then((data) => {
           this.$store.dispatch('load_groupgadget_with_id', this.selected)
+          this.$store.dispatch('LOAD_USERDESIREDATA')
           //console.log(data)
           //this.groupgadget = data;
           //});

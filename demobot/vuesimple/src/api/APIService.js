@@ -62,4 +62,12 @@ export class APIService {
 
   }
 
+  getUserProfile(){
+    const url = `${API_URL}/api/userprofile/`;
+    return axios.get(url).then(response => response.data);
+
+
+
+  }
+
 }
