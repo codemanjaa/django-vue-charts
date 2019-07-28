@@ -17,22 +17,22 @@
   export default {
     name: 'PieChartContainer',
     components: {PieChart},
-    //props: ["data", "options"],
+    props: ["data", "options"],
 
-    // data: () => ({
-    //   loaded: false,
-    //   chartData: null,
+    data: () => ({
+      loaded: false,
+      chartData: null,
+
+    }),
+
+
+    // data: function () {
     //
-    // }),
-
-
-    data: function () {
-
-      return {
-        loaded: false,
-        chartData: null,
-      }
-    },
+    //   return {
+    //     loaded: false,
+    //     chartData: null,
+    //   }
+    // },
 
 
     options: () => {
@@ -41,7 +41,7 @@
     methods: {
       drawchart() {
 
-        var pie =  this.chartData = {
+        var pie = this.chartData = {
           labels: ['Men', 'Women'],
           datasets: [
             {
@@ -68,6 +68,16 @@
         this.options = null
         this.loaded = true
 
+
+      }
+
+    },
+    watch: {
+      chartData: function () {
+        //this.drawchart()
+        //   this.$data._chart.render()
+//        this.chartData.data = [this.$store.getters.getChart.total_men, this.$store.getters.getChart.total_women]
+        console.log('Yessssssssssss')
 
       }
 

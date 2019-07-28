@@ -13,18 +13,8 @@ export default new Vuex.Store({
     groupgadget : [],
     chartdata : [],
     userdesiredata: {},
-
-    piechartdata: {
-          labels: ['Men', 'Women'],
-          datasets: [
-            {
-
-              label: 'Gender Ratio',
-              backgroundColor: ['#3a2ff8', '#ef5ef9'],
-              data: []
-            }
-          ],
-        },
+    piechartdata: {},
+    usermoodcontainer:{}
   },
 
 
@@ -37,6 +27,13 @@ export default new Vuex.Store({
 
     SET_USERDESIREDATA(state, userdesiredata ){
       state.userdesiredata = userdesiredata
+    },
+
+     SET_PIECHARTDATA(state, piechartdata ){
+      state.piechartdata = piechartdata
+    },
+    SET_USERMOODCONTAINER(state, usermoodcontainer){
+      state.usermoodcontainer = usermoodcontainer
     }
 
 
@@ -46,6 +43,7 @@ export default new Vuex.Store({
       apiService.getGroupGadget().then(data => {
         console.log('calling mutation')
           commit('SET_GROUPGADGET', data)
+
         });
     },
     load_groupgadget_with_id({commit}, id){
@@ -58,7 +56,19 @@ export default new Vuex.Store({
       apiService.getUserProfile().then(data => {
         commit('SET_USERDESIREDATA', data)
       });
-    }
+    },
+    LOAD_PIECHARTDATA_with_id({commit}, id){
+      apiService.getGroupPie('?gid='+id).then(data => {
+        commit('SET_PIECHARTDATA', data)
+      });
+    },
+    LOAD_USERMOODCONTAINER_WITH_id({commit}, id){
+      apiService.getUserMood('?id='+id).then(data => {
+        console.log('calling mutation')
+          commit('SET_USERMOODCONTAINER', data)
+        });
+    },
+
   },
   getters: {
     getChart(state){
@@ -66,6 +76,9 @@ export default new Vuex.Store({
     },
     getDesire(state){
       return state.userdesiredata;
+    },
+    getPiechart(state){
+      return state.piechartdata;
     }
   }
 })

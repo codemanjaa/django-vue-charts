@@ -11,7 +11,7 @@
         <div class="col-9">
           <div class="dropdown">
 
-            <select name="grouplist" id="grouplist" v-model="selected" v-on:change="onChange">
+            <select name="grouplist" id="grouplist" v-model="selected"  v-on:change="onChange">
               <option value="">Select a Group</option>
               <option value="all">all</option>
               <option v-for="group in groups" v-bind:value="group.id">
@@ -85,7 +85,8 @@
 
           <h6 class="card-title">Gender Stats</h6>
         </div>
-         <chart-container>
+        <chart-container>
+
 
         </chart-container>
 
@@ -95,13 +96,50 @@
       <div class="col-6">
         <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Desire Stas</h6>
-        </div>
+          <h6 class="card-title">Total Cigars Stats</h6>
 
-        <user-bar-container></user-bar-container>
+        </div>
+        <total-cigars-bar></total-cigars-bar>
+
+        <!--<user-bar-container></user-bar-container>-->
       </div>
     </div>
 
+    <div class="row" style="margin-top: 25px">
+      <div class="col-6">
+
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+            <h6 class="card-title">Gender Stats</h6>
+          </div>
+
+          <gender-pie-container align="center"></gender-pie-container>
+
+      </div>
+
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Desire Stats</h6>
+        </div>
+        <reactive-bar-container></reactive-bar-container>
+
+        <!--<user-bar-container></user-bar-container>-->
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Mood Stats</h6>
+        </div>
+
+        <mood-pie-container></mood-pie-container>
+
+      </div>
+
+    </div>
   </div>
 
 
@@ -119,11 +157,19 @@
   import ChartContainer from "./ChartContainer";
   import GroupLineChart from './GroupLineChart'
   import UserBarContainer from "./UserBarContainer";
+  import ReactiveBarContainer from "./ReactiveBarContainer";
+  import GenderPieContainer from "./GenderPieContainer";
+  import MoodPieContainer from "./MoodPieContainer";
+  import TotalCigarsBar from "./TotalCigarsBar";
 
   export default {
     name: "GroupGadget",
 
-    components: {UserBarContainer, ChartContainer, GroupChart},
+    components: {
+      TotalCigarsBar,
+      MoodPieContainer,
+      GenderPieContainer, ReactiveBarContainer, UserBarContainer, ChartContainer, GroupChart,
+    },
     data() {
       return {
         groups: [],
@@ -146,12 +192,25 @@
           console.log(data)
           this.groups = data;
           this.numberOfGroups = data.length;
+
         });
       },
       getGroupUserList() {
         apiService.getGroupUserList().then(data => {
           this.groupusers = data;
         })
+      },
+
+      getGroupPie() {
+
+        apiService.getGroupPie('?gid=' + this.selected).then((data) => {
+          this.$store.dispatch('LOAD_PIECHARTDATA_with_id', this.selected)
+          //GenderPieContainer.$set.data.chartData = this.$store.state.getPiechart()
+          console.log("Group pie    " + this.$store.state.getPiechart)
+          //this.groupusers = data;
+        });
+
+
       },
       onChange: function () {
         var self = this
@@ -160,13 +219,21 @@
         console.log(gid);
         if (gid == "") {
           this.getGroupGadget();
+          //apiService.getGroupPie();
         } else {
           //apiService.getGroupGadget('?gid='+this.selected).then((data) => {
           this.$store.dispatch('load_groupgadget_with_id', this.selected)
           this.$store.dispatch('LOAD_USERDESIREDATA')
+          // this.$store.dispatch('LOAD_PIECHARTDATA')
           //console.log(data)
           //this.groupgadget = data;
           //});
+          apiService.getGroupPie('?gid=' + this.selected).then((data) => {
+            this.$store.dispatch('LOAD_PIECHARTDATA_with_id', this.selected)
+            //GenderPieContainer.$set.data.chartData = this.$store.state.getPiechart()
+            console.log("Group pie    " + this.$store.state.getPiechart)
+            //this.groupusers = data;
+          });
 
           apiService.getUsers('?gid=' + this.selected).then((data) => {
             console.log(data)
@@ -186,7 +253,7 @@
       this.getGroups();
 
     },
-    computed: mapState(["groupgadget"])
+    computed: mapState(["groupgadget", "GenderPieContainer"])
   };
 </script>
 

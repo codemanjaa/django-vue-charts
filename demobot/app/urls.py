@@ -19,6 +19,16 @@ urlpatterns = [
   path('groupuserlist/', views.GroupUserView.as_view()),
   path('groupchart/', views.GroupChartView.as_view()),
   path('userprofile/', views.UserProfileView.as_view()),
+  path('userchart/', views.UserChartDataView.as_view()),
+  path('grouppie/', views.GenderPieView.as_view()),
+  path('groupmood/', views.GroupMoodView.as_view()),
+  path('grouptotal/', views.GroupTotalCigarsView.as_view()),
+  path('usermood/', views.UserMoodChartView.as_view()),
+  path('userdistract/', views.UserDistractChartView.as_view()),
+  path('useralone/', views.UserAloneChartView.as_view()),
+  path('userdrive/', views.UserDriveChartView.as_view()),
+
+
 ]
 
 

@@ -51,23 +51,71 @@ export class APIService {
   }
 
 
-   getGroupUserList() {
+  getGroupUserList() {
     const url = `${API_URL}/api/groupuserlist/`;
     return axios.get(url).then(response => response.data);
   }
 
-  getGroupUserList(id){
+  getGroupUserList(id) {
     const url = `${API_URL}/api/groupuserlist/${id}`;
     return axios.get(url).then(response => response.data);
 
   }
 
-  getUserProfile(){
+  getUserProfile() {
     const url = `${API_URL}/api/userprofile/`;
     return axios.get(url).then(response => response.data);
 
 
+  }
+
+  getGroupPie() {
+
+    const url = `${API_URL}/api/grouppie/`;
+    return axios.get(url).then(response => response.data);
 
   }
+
+  getGroupPie(id) {
+    const url = `${API_URL}/api/grouppie/${id}`;
+    return axios.get(url).then(response => response.data);
+
+  }
+
+  getGroupMood() {
+
+    const url = `${API_URL}/api/groupmood/`;
+    return axios.get(url).then(response => response.data);
+
+  }
+
+  getGroupTotal() {
+
+    const url = `${API_URL}/api/grouptotal/`;
+    return axios.get(url).then(response => response.data);
+
+  }
+
+  getUserMood(id) {
+    const url = `${API_URL}/api/usermood/${id}`;
+    return axios.get(url).then(response => response.data);
+  }
+
+  getUserDistract(id) {
+    const url = `${API_URL}/api/userdistract/${id}`;
+    return axios.get(url).then(response => response.data);
+  }
+
+  getUserAlone(id) {
+    const url = `${API_URL}/api/useralone/${id}`;
+    return axios.get(url).then(response => response.data);
+  }
+
+  getUserDrive(id) {
+    const url = `${API_URL}/api/userdrive/${id}`;
+    return axios.get(url).then(response => response.data);
+  }
+
+
 
 }

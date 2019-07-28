@@ -48,7 +48,7 @@
               <td>{{user.gid}}</td>
               <td>{{user.last_interaction}}</td>
               <td>
-                <button class="btn-secondary" >View</button>
+                <button class="btn-secondary" @click="viewProfile(user.id)" >View</button>
               </td>
             </tr>
             </tbody>
@@ -64,7 +64,50 @@
 
       </div>
     </div>
+    <div class="row" style="margin-top: 25px">
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">User Mood Stats</h6>
+        </div>
+       <user-mood-container></user-mood-container>
+
+      </div>
+
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">User Loneliness Stats</h6>
+
+        </div>
+       <user-alone-container></user-alone-container>
+
+
+      </div>
+    </div>
+    <div class="row" style="margin-top: 25px">
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">User Smoking Drive Stats</h6>
+        </div>
+      <user-drive-container></user-drive-container>
+      </div>
+
+      <div class="col-6">
+        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">User Distraction Stats</h6>
+
+        </div>
+       <user-distract-container></user-distract-container>
+
+
+      </div>
+    </div>
+
   </div>
+
 
 
 </template>
@@ -72,6 +115,11 @@
 <script>
 
   import {APIService} from "../api/APIService";
+  import UserMoodContainer from "./UserMoodContainer";
+  import UserDetails from "./UserDetails";
+  import UserDistractContainer from "./UserDistractContainer";
+  import UserAloneContainer from "./UserAloneContainer";
+  import UserDriveContainer from "./UserDriveContainer";
 
   const APU_URL = 'http://localhost:8000';
   const apiService = new APIService();
@@ -79,7 +127,7 @@
   export default {
     name: "UserProfile",
 
-    components: {},
+    components: {UserDriveContainer, UserAloneContainer, UserDistractContainer, UserMoodContainer},
     data() {
       return {
         groupgadget: [],
@@ -129,6 +177,24 @@
         this.currentSort = s;
 
       },
+      viewProfile: function(id){
+        if(id == null){
+          console.log('This is a profile check...'+id)
+        }
+        else{
+          apiService.getUserMood('?id='+id).then(data => {
+          //UserMoodContainer.methods.loadData(id)
+          this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id',id)
+          console.log('User mood data '+id)
+        })
+
+        }
+
+        console.log('This is a retrieved user id: '+ id);
+
+
+      },
+
       onChange: function () {
         var self = this
         console.log(self.groups);
@@ -178,6 +244,7 @@
       this.getGroups();
 
     },
+
   };
 </script>
 
