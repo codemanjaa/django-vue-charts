@@ -27,6 +27,12 @@ urlpatterns = [
   path('userdistract/', views.UserDistractChartView.as_view()),
   path('useralone/', views.UserAloneChartView.as_view()),
   path('userdrive/', views.UserDriveChartView.as_view()),
+  path('groupnecessary/', views.GroupNecessarylCigarsView.as_view()),
+  path('groupcontext/', views.GroupContextView.as_view()),
+  path('groupmoodall/', views.GroupMoodAllView.as_view()),
+  path('groupdesireall/', views.GroupDesireAllView.as_view()),
+
+
 
 
 ]

@@ -51,6 +51,10 @@
                 <button class="btn-secondary" @click="viewProfile(user.id)" >View</button>
               </td>
             </tr>
+            <tr v-if="userloaded">
+
+
+            </tr>
             </tbody>
 
           </table>
@@ -64,50 +68,54 @@
 
       </div>
     </div>
-    <div class="row" style="margin-top: 25px">
-      <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">User Mood Stats</h6>
+    <div class="container" v-if="userloaded" id="showtime" ref="showtime">
+      <div class="row" style="margin-top: 25px">
+        <div class="col-6">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+            <h6 class="card-title">User Mood Stats</h6>
+          </div>
+          <user-chart :chart-data="usermoodstas" :options="{responsive: true, maintainAspectRatio: false}"></user-chart>
+
         </div>
-       <user-mood-container></user-mood-container>
 
+        <div class="col-6">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+            <h6 class="card-title">User Loneliness Stats</h6>
+
+          </div>
+          <user-pie :chart-data="useralonestats" :options="{responsive: true, maintainAspectRatio: false}"></user-pie>
+
+
+        </div>
       </div>
+      <div class="row" style="margin-top: 25px">
+        <div class="col-6">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-      <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
-
-          <h6 class="card-title">User Loneliness Stats</h6>
-
-        </div>
-       <user-alone-container></user-alone-container>
-
-
-      </div>
-    </div>
-    <div class="row" style="margin-top: 25px">
-      <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
-
-          <h6 class="card-title">User Smoking Drive Stats</h6>
-        </div>
-      <user-drive-container></user-drive-container>
-      </div>
-
-      <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
-
-          <h6 class="card-title">User Distraction Stats</h6>
+            <h6 class="card-title">User Smoking Drive Stats</h6>
+          </div>
+          <user-pie :chart-data="userdrivestats" :options="{responsive: true, maintainAspectRatio: false}"></user-pie>
 
         </div>
-       <user-distract-container></user-distract-container>
+
+        <div class="col-6">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+            <h6 class="card-title">User Distraction Stats</h6>
+
+          </div>
+          <user-chart :chart-data="userdistractionstats"
+                      :options="{responsive: true, maintainAspectRatio: false}"></user-chart>
 
 
+        </div>
       </div>
     </div>
 
   </div>
-
 
 
 </template>
@@ -120,6 +128,9 @@
   import UserDistractContainer from "./UserDistractContainer";
   import UserAloneContainer from "./UserAloneContainer";
   import UserDriveContainer from "./UserDriveContainer";
+  import {mapState} from "vuex"
+  import UserChart from "./UserChart";
+  import UserPie from "./UserPie";
 
   const APU_URL = 'http://localhost:8000';
   const apiService = new APIService();
@@ -127,7 +138,7 @@
   export default {
     name: "UserProfile",
 
-    components: {UserDriveContainer, UserAloneContainer, UserDistractContainer, UserMoodContainer},
+    components: {UserPie, UserChart, UserDriveContainer, UserAloneContainer, UserDistractContainer, UserMoodContainer},
     data() {
       return {
         groupgadget: [],
@@ -137,8 +148,13 @@
         selecteduser: '',
         currentSort: 'name',
         currentSortDirection: 'asc',
-        pageSize:10,
-        currentPage: 1
+        pageSize: 10,
+        currentPage: 1,
+        usermoodstas: {},
+        useralonestats: {},
+        userdrivestats: {},
+        userdistractionstats: {},
+        userloaded: false
 
 
       };
@@ -164,33 +180,51 @@
           this.groupusers = data;
         })
       },
-      nextPage: function(){
-        if((this.currentPage*this.pageSize)<this.groupusers.length) this.currentPage++;
+      nextPage: function () {
+        if ((this.currentPage * this.pageSize) < this.groupusers.length) this.currentPage++;
       },
-      prevPage: function(){
-        if(this.currentPage > 1) this.currentPage--;
+      prevPage: function () {
+        if (this.currentPage > 1) this.currentPage--;
       },
       sort: function (s) {
         if (s === this.currentSort) {
-          this.currentSortDirection = this.currentSortDirection === 'asc'?'desc':'asc';
+          this.currentSortDirection = this.currentSortDirection === 'asc' ? 'desc' : 'asc';
         }
         this.currentSort = s;
 
       },
-      viewProfile: function(id){
-        if(id == null){
-          console.log('This is a profile check...'+id)
-        }
-        else{
-          apiService.getUserMood('?id='+id).then(data => {
-          //UserMoodContainer.methods.loadData(id)
-          this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id',id)
-          console.log('User mood data '+id)
-        })
+      viewProfile: function (id) {
+        if (id == null) {
+          console.log('This is a profile check...' + id)
+        } else {
+          apiService.getUserMood('?id=' + id).then(data => {
+            //UserMoodContainer.methods.loadData(id)
+            this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id', id)
+            this.usermoodstas = data
+            this.userloaded = true
+
+            console.log('User mood data ' + data)
+          });
+          apiService.getUserAlone('?id=' + id).then(data => {
+            this.useralonestats = data
+            this.userloaded = true
+          });
+
+          apiService.getUserDrive('?id=' + id).then(data => {
+            this.userdrivestats = data
+            this.userloaded = true
+          });
+
+          apiService.getUserDistract('?id=' + id).then(data => {
+            this.userdistractionstats = data
+            this.userloaded = true
+          });
+          this.goto('showtime')
+
 
         }
 
-        console.log('This is a retrieved user id: '+ id);
+        console.log('This is a retrieved user id: ' + id);
 
 
       },
@@ -213,12 +247,11 @@
             this.groupusers = data;
           });
 
+
         }
 
 
       },
-
-
 
 
     },
@@ -231,12 +264,13 @@
           if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
           return 0;
         }).filter((row, index) => {
-          let start  = (this.currentPage-1)*this.pageSize;
-          let end  = this.currentPage*this.pageSize;
-          if(index >= start && index <end) return true;
+          let start = (this.currentPage - 1) * this.pageSize;
+          let end = this.currentPage * this.pageSize;
+          if (index >= start && index < end) return true;
         });
 
-      }
+      },
+
     },
     mounted() {
 
@@ -244,6 +278,7 @@
       this.getGroups();
 
     },
+
 
   };
 </script>

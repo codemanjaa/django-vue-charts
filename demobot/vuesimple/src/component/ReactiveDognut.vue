@@ -4,7 +4,7 @@
   import {mapState} from "vuex"
 
   export default {
-    name: "ReactiveBar",
+    name: "ReactiveDognut",
     extends: Bar,
     mixins: [mixins.reactiveProp],
     props: ["options"],
@@ -14,7 +14,7 @@
       // If you want to pass options please create a local options object
       this.renderChart(this.chartData, this.options);
     },
-    computed: mapState(["usermoodcontainer"])
+    computed: mapState([])
   };
 
 </script>

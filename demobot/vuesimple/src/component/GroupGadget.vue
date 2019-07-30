@@ -11,7 +11,7 @@
         <div class="col-9">
           <div class="dropdown">
 
-            <select name="grouplist" id="grouplist" v-model="selected"  v-on:change="onChange">
+            <select name="grouplist" id="grouplist" v-model="selected" v-on:change="onChange">
               <option value="">Select a Group</option>
               <option value="all">all</option>
               <option v-for="group in groups" v-bind:value="group.id">
@@ -81,48 +81,28 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+        <div v-if="chartgenderloaded"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
           <h6 class="card-title">Gender Stats</h6>
         </div>
-        <chart-container>
 
 
-        </chart-container>
+        <gender-pie v-if="chartgenderloaded" :chartData="chartgenderdata"
+                    :options="{responsive: true, maintainAspectRatio: false}"/>
 
         <!--<group-chart></group-chart>-->
       </div>
 
       <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+        <div v-if="totalcigarloaded"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
           <h6 class="card-title">Total Cigars Stats</h6>
 
         </div>
-        <total-cigars-bar></total-cigars-bar>
-
-        <!--<user-bar-container></user-bar-container>-->
-      </div>
-    </div>
-
-    <div class="row" style="margin-top: 25px">
-      <div class="col-6">
-
-          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
-
-            <h6 class="card-title">Gender Stats</h6>
-          </div>
-
-          <gender-pie-container align="center"></gender-pie-container>
-
-      </div>
-
-      <div class="col-6">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
-
-          <h6 class="card-title">Desire Stats</h6>
-        </div>
-        <reactive-bar-container></reactive-bar-container>
+        <total-cigars-bar v-if="totalcigarloaded"></total-cigars-bar>
 
         <!--<user-bar-container></user-bar-container>-->
       </div>
@@ -130,16 +110,79 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-12">
-        <div style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+        <div v-if="groupmoodloaded"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Mood Stats</h6>
+          <h6 class="card-title">Mood Bar</h6>
         </div>
 
-        <mood-pie-container></mood-pie-container>
+        <group-mood-reactive-bar v-if="groupmoodloaded" :chartData="groupmoodchardata"
+                                 :options="{responsive: true, maintainAspectRatio: false}"/>
 
       </div>
 
     </div>
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+        <div v-if="chartactive"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Group Desire Stats</h6>
+        </div>
+        <group-desire-reactive-bar v-if="groupdesireloaded" :chartData="groupdesirechartdata"
+                                   :options="{responsive: true, maintainAspectRatio: false}"/>
+
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+        <div v-if="chartactive"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Context Stats</h6>
+        </div>
+
+        <group-context-container v-if="chartactive">
+          <reactive-dognut :chartData=this.groupcontextchartdata></reactive-dognut>
+        </group-context-container>
+
+      </div>
+
+    </div>
+
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+        <div v-if="chartactive" style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title">Mood Doughnut Stats</h6>
+        </div>
+
+        <mood-doughnut  v-if="groupmoodloaded" :chartData="groupmoodchardata"
+                                 :options="{responsive: true, maintainAspectRatio: false}"/>
+
+      </div>
+
+    </div>
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+
+        <div v-if="chartactive"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+          <h6 class="card-title"></h6>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
   </div>
 
 
@@ -161,11 +204,27 @@
   import GenderPieContainer from "./GenderPieContainer";
   import MoodPieContainer from "./MoodPieContainer";
   import TotalCigarsBar from "./TotalCigarsBar";
+  import GroupContextContainer from "./GroupContextContainer";
+  import ReactiveDognut from "./ReactiveDognut";
+  import GroupMoodAllContainer from "./GroupMoodAllContainer";
+  import TestBar from './TestBar'
+  import GroupMoodReactiveBar from "./GroupMoodReactiveBar";
+  import GroupDesireReactiveBar from "./GroupDesireReactiveBar";
+  import GenderPie from "./GenderPie";
+  import MoodDoughnut from "./MoodDoughnut";
 
   export default {
     name: "GroupGadget",
 
     components: {
+      MoodDoughnut,
+      GenderPie,
+      GroupDesireReactiveBar,
+      GroupMoodReactiveBar,
+      GroupMoodAllContainer,
+      ReactiveDognut,
+      TestBar,
+      GroupContextContainer,
       TotalCigarsBar,
       MoodPieContainer,
       GenderPieContainer, ReactiveBarContainer, UserBarContainer, ChartContainer, GroupChart,
@@ -176,6 +235,15 @@
         selected: '',
         groupusers: [],
         selecteduser: '',
+        groupmoodchardata: {},
+        groupdesirechartdata: {},
+        groupcontextchartdata: {},
+        chartgenderdata: {},
+        groupmoodloaded: false,
+        groupdesireloaded: false,
+        chartgenderloaded: false,
+        totalcigarloaded: false,
+        chartactive: false
 
 
       };
@@ -212,6 +280,21 @@
 
 
       },
+
+      getGroupContext() {
+        apiService.getGroupContext().then((data) => {
+
+        })
+
+      },
+      getGroupMoodAll() {
+        apiService.getGroupMoodAll().then((data) => {
+          this.groupmoodchardata = data
+
+        })
+      },
+
+
       onChange: function () {
         var self = this
         console.log(self.groups);
@@ -219,20 +302,41 @@
         console.log(gid);
         if (gid == "") {
           this.getGroupGadget();
-          //apiService.getGroupPie();
+          this.getGroupContext();
+
         } else {
           //apiService.getGroupGadget('?gid='+this.selected).then((data) => {
           this.$store.dispatch('load_groupgadget_with_id', this.selected)
           this.$store.dispatch('LOAD_USERDESIREDATA')
-          // this.$store.dispatch('LOAD_PIECHARTDATA')
-          //console.log(data)
-          //this.groupgadget = data;
-          //});
+          this.totalcigarloaded = true
+          this.chartactive = true
+
+          apiService.getGroupContext('?gid=' + this.selected).then((data) => {
+            this.groupcontextchartdata = data
+            console.log('This is group context chart data ' + data)
+
+          });
+          apiService.getGroupMoodAll('?gid=' + this.selected).then((data) => {
+            this.groupmoodchardata = data
+            this.groupmoodloaded = true
+
+
+            console.log('This is group mood  for ' + this.selected + ' >>>> ' + data.datasets + this.groupmoodloaded)
+
+          });
+
+          apiService.getGroupDesireAll('?gid=' + this.selected).then((data) => {
+            this.groupdesirechartdata = data
+            this.groupdesireloaded = true
+            console.log('This is group mood  for ' + this.selected + ' >>>> ' + data.datasets + this.groupmoodloaded)
+
+          });
+
+
           apiService.getGroupPie('?gid=' + this.selected).then((data) => {
+            this.chartgenderdata = data
+            this.chartgenderloaded = true
             this.$store.dispatch('LOAD_PIECHARTDATA_with_id', this.selected)
-            //GenderPieContainer.$set.data.chartData = this.$store.state.getPiechart()
-            console.log("Group pie    " + this.$store.state.getPiechart)
-            //this.groupusers = data;
           });
 
           apiService.getUsers('?gid=' + this.selected).then((data) => {
@@ -240,17 +344,18 @@
             this.groupusers = data;
           });
 
+
         }
 
 
       },
-
 
     },
     mounted() {
 
       // this.getGroupGadget();
       this.getGroups();
+
 
     },
     computed: mapState(["groupgadget", "GenderPieContainer"])

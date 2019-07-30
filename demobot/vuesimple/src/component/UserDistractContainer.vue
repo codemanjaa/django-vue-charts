@@ -1,7 +1,8 @@
 <template>
    <div class="container">
 
-    <reactive-bar v-if="loaded" :chartData=chartData   :options="{responsive: true, maintainAspectRatio: false}"/>
+    <reactive-bar v-if="loaded" :chartData=chartData   :options="{position: 'relative',
+responsive: true, maintainAspectRatio: false  }"/>
   </div>
 
 </template>

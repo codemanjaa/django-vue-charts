@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <gender-pie v-if="loaded" :chartData="chartData" :options="null"/>
+    <gender-pie v-if="loaded" :chartData="chartData" :options="{responsive: true, maintainAspectRatio: false}"/>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
     components: {GenderPie},
     data: () => ({
       loaded: false,
-      chartData: null,
+      chartData: {},
       first: true
 
     }),

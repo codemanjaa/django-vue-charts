@@ -77,7 +77,7 @@
         //this.drawchart()
         //   this.$data._chart.render()
 //        this.chartData.data = [this.$store.getters.getChart.total_men, this.$store.getters.getChart.total_women]
-        console.log('Yessssssssssss')
+        console.log('Yessssssssssss'+this.$data._chart)
 
       }
 

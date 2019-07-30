@@ -1,7 +1,7 @@
 <template>
   <div class="container">
 
-    <reactive-bar v-if="loaded" :chartData=chartData v-bind="usermoodcontainer"  :options="{responsive: true, maintainAspectRatio: false}"/>
+    <reactive-bar v-if="loaded" :chartData=chartData v-bind="usermoodcontainer" v-model="usermoodcontainer"  :options="{responsive: true, maintainAspectRatio: false}"/>
   </div>
 </template>
 

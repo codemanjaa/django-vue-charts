@@ -1,9 +1,9 @@
 <script>
-  import {Pie, mixins} from "vue-chartjs";
+  import {Doughnut, mixins} from "vue-chartjs";
 
   export default {
     name: "MoodPie",
-    extends: Pie,
+    extends: Doughnut,
     mixins: [mixins.reactiveProp],
     props: ["options"],
 
