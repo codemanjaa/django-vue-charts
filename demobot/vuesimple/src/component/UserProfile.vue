@@ -8,7 +8,7 @@
 
     <div style="background-color: #E8EFF0; margin-top: 10px; width: available; margin-bottom: 5px; padding: 5px;">
       <div class="row">
-        <div class="col-9">
+        <div class="col-12">
           <div class="dropdown">
 
             <select class="form-control form-control-lg btn-primary" name="grouplist" id="grouplist" v-model="selected"
@@ -35,26 +35,34 @@
         <div class="col-12">
           <table class="table table-striped">
             <thead>
-            <tr>
+            <tr v-if="userloaded">
+              <th>#</th>
               <th @click="sort('name')">Name</th>
-              <th @click="sort('group')">Group</th>
-              <th @click="sort('date')">Join Date</th>
+              <th @click="sort('last name')">Last Name</th>
+              <th @click="sort('date')">Last Interaction Date</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr v-for="user in sortedUsers">
+            <tr v-for="user, index in sortedUsers" class="clickable" data-toggle="collapse" data-target="#userstats"
+                aria-expanded="false" aria-controls="userstats">
+              <td>{{index+1}}</td>
               <td>{{user.first_name}}</td>
-              <td>{{user.gid}}</td>
+              <td>{{user.last_name}}</td>
               <td>{{user.last_interaction}}</td>
               <td>
-                <button class="btn-secondary" @click="viewProfile(user.id)" >View</button>
+                <button class="btn-secondary" @click="viewProfile(user.id)">View</button>
               </td>
             </tr>
-            <tr v-if="userloaded">
-
+            <tr>
+            </tr>
+            </tbody>
+            <tbody id="userstats" class="collapse" v-if="userloaded">
+            <tr aria-rowspan="">
 
             </tr>
+
+
             </tbody>
 
           </table>
@@ -69,7 +77,56 @@
       </div>
     </div>
 
-    <div class="container" v-if="userloaded" id="showtime" ref="showtime">
+    <div class="container" v-if="userdetailsloaded" id="showtime" ref="showtime">
+
+      <div class="row" style="margin-top: 25px">
+        <div class="col-12">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+
+            <h6 class="card-title">User Details</h6>
+          </div>
+
+          <div class="form-group row" style="background-color: #eeeeee; margin-left:5px; margin-top: 10px;">
+
+            <label class="col-sm-4 col-form-label">First Name</label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].first_name">
+            </div>
+            <label class="col-sm-4 col-form-label">Last Name </label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].last_name">
+            </div>
+
+            <label class="col-sm-4 col-form-label">Gender</label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].gender">
+            </div>
+            <label class="col-sm-4 col-form-label">State </label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].state">
+            </div>
+            <label class="col-sm-4 col-form-label">Facebook Id</label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].facebook_id">
+            </div>
+            <label class="col-sm-4 col-form-label">Last Interaction on: </label>
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+              <input type="text" readonly class="form-control" v-bind:value="userdetails[0].last_interaction">
+            </div>
+            <label class="col-sm-4 col-form-label">Group ID: </label>
+            <div class="col-sm-4" style="margin-bottom: 2px;">
+              <input type="text" class="form-control" v-bind:value="userdetails[0].gid">
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 2px;">
+              <button type="submit">Change</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
       <div class="row" style="margin-top: 25px">
         <div class="col-6">
           <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
@@ -154,6 +211,8 @@
         useralonestats: {},
         userdrivestats: {},
         userdistractionstats: {},
+        userdetails: {},
+        userdetailsloaded: false,
         userloaded: false
 
 
@@ -197,6 +256,7 @@
         if (id == null) {
           console.log('This is a profile check...' + id)
         } else {
+
           apiService.getUserMood('?id=' + id).then(data => {
             //UserMoodContainer.methods.loadData(id)
             this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id', id)
@@ -219,9 +279,15 @@
             this.userdistractionstats = data
             this.userloaded = true
           });
-          this.goto('showtime')
+          // this.goto('showtime')
 
 
+          apiService.getUserDetails('?id=' + id).then(data => {
+            this.userdetails = data
+            this.userdetailsloaded = true
+            console.log(data)
+
+          });
         }
 
         console.log('This is a retrieved user id: ' + id);

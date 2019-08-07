@@ -24,11 +24,12 @@ from rest_framework.fields import JSONField
 
 class Group(models.Model):
     id = models.CharField(primary_key=True, max_length=32)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
     state = models.CharField(max_length=255, blank=True, null=True)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(null= True)
 
     class Meta:
+        app_label = 'primary'
         managed = True
         db_table = 'group'
 
@@ -47,6 +48,7 @@ class User(models.Model):
     gid = models.ForeignKey(Group, models.DO_NOTHING, db_column='gid')
 
     class Meta:
+      app_label = 'primary'
       managed = False
       db_table = 'user'
 
@@ -63,8 +65,92 @@ class Data(models.Model):
     #value = JSONField()
 
     class Meta:
-        managed = False
-        db_table = 'data'
-        unique_together = (('user', 'clz'), )
+      app_label = 'primary'
+      managed = False
+      db_table = 'data'
+      unique_together = (('user', 'clz'), )
+
+
+class AuthRouter:
+  """
+  A router to control all database operations on models in the
+  auth application.
+  """
+
+  def db_for_read(self, model, **hints):
+    """
+    Attempts to read auth models go to auth_db.
+    """
+    if model._meta.app_label == 'auth':
+      return 'default'
+    return None
+
+  def db_for_write(self, model, **hints):
+    """
+    Attempts to write auth models go to auth_db.
+    """
+    if model._meta.app_label == 'auth':
+      return 'default'
+    return None
+
+  def allow_relation(self, obj1, obj2, **hints):
+    """
+    Allow relations if a model in the auth app is involved.
+    """
+    if obj1._meta.app_label == 'auth' or \
+      obj2._meta.app_label == 'auth':
+      return True
+    return None
+
+  def allow_migrate(self, db, app_label, model_name=None, **hints):
+    """
+    Make sure the auth app only appears in the 'auth_db'
+    database.
+    """
+    if app_label == 'auth':
+      return db == 'default'
+    return None
+
+class PrimaryRouter():
+  """
+  A router to control all database operations on models in the
+  auth application.
+  """
+
+  def db_for_read(self, model, **hints):
+    """
+    Attempts to read auth models go to auth_db.
+    """
+    if model._meta.app_label == 'primary':
+      return 'jdf_db'
+    return None
+
+  def db_for_write(self, model, **hints):
+    """
+    Attempts to write auth models go to auth_db.
+    """
+    if model._meta.app_label == 'primary':
+      return 'jdf_db'
+    return None
+
+  def allow_relation(self, obj1, obj2, **hints):
+    """
+    Allow relations if a model in the auth app is involved.
+    """
+    if obj1._meta.app_label == 'primary' or \
+      obj2._meta.app_label == 'primary':
+      return True
+    return None
+
+  def allow_migrate(self, db, app_label, model_name=None, **hints):
+    """
+    Make sure the auth app only appears in the 'auth_db'
+    database.
+    """
+
+    if app_label == 'primary':
+      return db == 'jdf_db'
+    return None
+
 
 

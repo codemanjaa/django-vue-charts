@@ -91,9 +91,12 @@
             icon: 'fa fa-chart-area',
             child: [
               {
-                href: '/api/groupstat',
-                title: 'Preferences ',
-              }
+                title: 'State Management ',
+                icon: 'fa fa-chart-area',
+                href: '/groupsetting',
+
+              },
+
             ]
           }
         ]

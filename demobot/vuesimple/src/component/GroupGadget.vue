@@ -8,11 +8,12 @@
 
     <div style="background-color: #E8EFF0; margin-top: 10px; width: available; margin-bottom: 5px; padding: 5px;">
       <div class="row">
-        <div class="col-9">
+        <div class="col-12">
           <div class="dropdown">
 
-            <select name="grouplist" id="grouplist" v-model="selected" v-on:change="onChange">
-              <option value="">Select a Group</option>
+            <select class="form-control form-control-lg btn-primary" name="grouplist" id="grouplist" v-model="selected"
+                    v-on:change="onChange">
+              <option value="" disabled>Select a Group</option>
               <option value="all">all</option>
               <option v-for="group in groups" v-bind:value="group.id">
                 {{group.id}} - {{group.name}}
@@ -26,14 +27,14 @@
           </div>
         </div>
         <div>
-          <div class="col">
-            <select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange" autocomplete="on">
-              <option value="" v-show="">Select a user</option>
-              <option v-for="user in groupusers">
-                {{user.first_name}}
-              </option>
-            </select>
-          </div>
+          <!--<div class="col">-->
+          <!--<select name="groupuserlist" id="groupuserlist" v-model="selected" v-on:change="onChange" autocomplete="on">-->
+          <!--<option value="" v-show="">Select a user</option>-->
+          <!--<option v-for="user in groupusers">-->
+          <!--{{user.first_name}} {{user.last_name}}-->
+          <!--</option>-->
+          <!--</select>-->
+          <!--</div>-->
         </div>
       </div>
     </div>
@@ -44,7 +45,7 @@
           <div class="card bg-light mb-sm-n1" style="max-width: 10rem">
             <div class="card-header">State</div>
             <div class="card-body center">
-              <center><h6>{{groupgadget.state}}</h6></center>
+              <center><h6>{{groupgadg.state}}</h6></center>
 
             </div>
 
@@ -55,7 +56,7 @@
           <div class="card bg-light mb-sm-n1" style="max-width: 8rem">
             <div class="card-header">Men</div>
             <div class="card-body">
-              <center><h5>{{groupgadget.total_men}} </h5></center>
+              <center><h5>{{groupgadg.total_men}} </h5></center>
             </div>
           </div>
         </div>
@@ -63,7 +64,7 @@
           <div class="card bg-light mb-sm-n1" style="max-width: 8rem">
             <div class="card-header">Women</div>
             <div class="card-body">
-              <center><h5>{{groupgadget.total_women}}</h5></center>
+              <center><h5>{{groupgadg.total_women}}</h5></center>
             </div>
           </div>
         </div>
@@ -71,7 +72,7 @@
           <div class="card bg-light mb-sm-n1" style="max-width: 8rem">
             <div class="card-header">Total</div>
             <div class="card-body">
-              <center><h5>{{groupgadget.total_user}}</h5></center>
+              <center><h5>{{groupgadg.total_user}}</h5></center>
             </div>
           </div>
         </div>
@@ -142,6 +143,20 @@
         <div v-if="chartactive"
              style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
+          <h6 class="card-title">Group Motivation Stats</h6>
+        </div>
+        <group-desire-reactive-bar v-if="groupmotivationloaded" :chartData="groupmotivationchartdata"
+                                   :options="{responsive: true, maintainAspectRatio: false}"/>
+
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 25px">
+      <div class="col-12">
+        <div v-if="chartactive"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+
           <h6 class="card-title">Context Stats</h6>
         </div>
 
@@ -156,13 +171,14 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-12">
-        <div v-if="chartactive" style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
+        <div v-if="chartactive"
+             style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
           <h6 class="card-title">Mood Doughnut Stats</h6>
         </div>
 
-        <mood-doughnut  v-if="groupmoodloaded" :chartData="groupmoodchardata"
-                                 :options="{responsive: true, maintainAspectRatio: false}"/>
+        <mood-doughnut v-if="groupmoodloaded" :chartData="groupmoodchardata"
+                       :options="{responsive: true, maintainAspectRatio: false}"/>
 
       </div>
 
@@ -235,15 +251,18 @@
         selected: '',
         groupusers: [],
         selecteduser: '',
+        groupgadg: [],
         groupmoodchardata: {},
         groupdesirechartdata: {},
         groupcontextchartdata: {},
+        groupmotivationchartdata: {},
         chartgenderdata: {},
         groupmoodloaded: false,
         groupdesireloaded: false,
         chartgenderloaded: false,
         totalcigarloaded: false,
-        chartactive: false
+        chartactive: false,
+        groupmotivationloaded: false
 
 
       };
@@ -252,7 +271,9 @@
     methods: {
       getGroupGadget() {
         this.$store.dispatch('load_groupgadget')
-
+        apiService.getGroupGadget().then((data) => {
+          this.groupgadg = data
+        })
       },
       getGroups() {
 
@@ -308,8 +329,12 @@
           //apiService.getGroupGadget('?gid='+this.selected).then((data) => {
           this.$store.dispatch('load_groupgadget_with_id', this.selected)
           this.$store.dispatch('LOAD_USERDESIREDATA')
-          this.totalcigarloaded = true
-          this.chartactive = true
+          apiService.getGroupGadget('?gid=' + this.selected).then((data) => {
+            this.groupgadg = data
+            this.totalcigarloaded = true
+            this.chartactive = true
+          });
+
 
           apiService.getGroupContext('?gid=' + this.selected).then((data) => {
             this.groupcontextchartdata = data
@@ -328,6 +353,13 @@
           apiService.getGroupDesireAll('?gid=' + this.selected).then((data) => {
             this.groupdesirechartdata = data
             this.groupdesireloaded = true
+            console.log('This is group mood  for ' + this.selected + ' >>>> ' + data.datasets + this.groupmoodloaded)
+
+          });
+
+          apiService.getGroupMotivationAll('?gid=' + this.selected).then((data) => {
+            this.groupmotivationchartdata = data
+            this.groupmotivationloaded = true
             console.log('This is group mood  for ' + this.selected + ' >>>> ' + data.datasets + this.groupmoodloaded)
 
           });

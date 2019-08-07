@@ -9,6 +9,7 @@ from .serializers import GroupSerializer, UserSerializer, GroupStatSerializer, G
 from rest_framework.response import Response
 from .models import Group, User, Data
 from rest_framework import viewsets
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -36,6 +37,24 @@ class GroupViewSet(viewsets.ModelViewSet):
   serializer_class = GroupSerializer
 
 
+
+
+
+
+class GroupView(viewsets.ModelViewSet):
+  queryset = Group.objects.all()
+  serializer_class = GroupSerializer
+
+  def get_queryset(self):
+    id = self.request.query_params.get('id')
+    if (id != None):
+      group = Group.objects.filter(id=id)
+      return group
+    else:
+      group = Group.objects.all()
+      return group
+
+
 class UserViewSet(viewsets.ModelViewSet):
   queryset = User.objects.all()
   serializer_class = UserSerializer
@@ -52,6 +71,19 @@ class UserViewSet(viewsets.ModelViewSet):
     elif (gid != None):
       users = User.objects.filter(gid=gid)
       return users
+
+
+class UserDetailViewSet(viewsets.ModelViewSet):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+
+  def get_queryset(self):
+    id = self.request.query_params.get('id')
+    if(id != None):
+      user = User.objects.filter(id=id)
+      return user
+    else:
+      return None
 
 
 class DataViewSet(viewsets.ModelViewSet):
@@ -526,22 +558,9 @@ class GroupMoodView(APIView):
 
 
 
-### Group Motivation view
-
-class GroupMotivationView(APIView):
-
-  def get(self, request):
 
 
-      gid = self.request.query_params.get('gid')
-      users = User.objects.filter(gid=id)
-      queryset = Data.objects.filter(user='f788476143e945f0a729c05294210604', clz='jdfbots.chatbot.cessation').values(
-        'value').first()
-      # queryset = Data.objects.filter(user=id,  clz='jdfbots.chatbot.tracker').values(
-      #   'value')
-      data = queryset['value']
-      jsondata = json.loads(data)
-      helped = jsondata['helped']
+
 
 class GroupTotalCigarsView(APIView):
    def get(self, request):
@@ -561,13 +580,6 @@ class GroupTotalCigarsView(APIView):
          for id in groupusers:
            groupusersdata = Data.objects.filter(user=id['id'], clz='jdfbots.chatbot.tracker').values(
              'value').first()
-
-           # if(groupusersdata == None):
-           #    datalist.append(groupusersdata)
-           #    totalcigars.append(0)
-
-
-
 
            if(groupusersdata != None):
                datalist.append(groupusersdata)
@@ -1587,3 +1599,310 @@ class GroupDesireAllView(APIView):
       ]
     }]}
     return Response(groupalldesirechartData)
+
+
+### Group Motivation view
+
+class GroupMotivationAllView(APIView):
+
+  def get(self, request):
+
+
+
+    gid = self.request.query_params.get('gid')
+      #users = User.objects.filter(gid=id)
+
+    DISTRACT_WALKING = 0
+    DISTRACT_WATER = 0
+    DISTRACT_TEETH = 0
+    DISTRACT_CHEWING = 0
+    DISTRACT_MUSIC = 0
+    DISTRACT_WEB = 0
+    DISTRACT_TALKING = 0
+    DISTRACT_PHONE = 0
+    DISTRACT_SHOWER = 0
+    DISTRACT_RELAXING = 0
+    DISTRACT_PLAYING = 0
+    DISTRACT_GAME = 0
+    DISTRACT_APPLE = 0
+    DISTRACT_VEGETABLES = 0
+    DISTRACT_MOVE = 0
+    DISTRACT_JUICE = 0
+    DISTRACT_EXERCISING = 0
+
+
+    groupnumber = []
+
+    if (gid == "all"):
+        gid = 'all'
+        tracker = Data.objects.filter(clz='jdfbots.chatbot.cessation').values('value')
+        groups = Group.objects.values_list('id', flat=True)
+        groupsize = len(groups)
+        groupname = Group.objects.values_list('name', flat=True)
+
+        for idx, group in enumerate(groups):
+          groupnumber.append(group)
+
+          data = groups[idx]
+          groupusers = User.objects.filter(gid=data).values('id')
+
+          for id in groupusers:
+            groupusersdata = Data.objects.filter(user=id['id'], clz='jdfbots.chatbot.cessation').values(
+              'value').first()
+
+            # if(groupusersdata == None):
+            #    datalist.append(groupusersdata)
+            #    totalcigars.append(0)
+
+            if (groupusersdata != None):
+
+              datas = groupusersdata['value']
+              jsondata = json.loads(datas)
+              cigars = jsondata['helped']
+
+              for element in cigars:
+                option = element['distraction']
+                if (option == 'DISTRACT_WALKING'):
+                  DISTRACT_WALKING = DISTRACT_WALKING + 1
+                elif (option == 'DISTRACT_WATER'):
+                  DISTRACT_WATER = DISTRACT_WATER + 1
+                elif (option == 'DISTRACT_TEETH'):
+                  DISTRACT_TEETH = DISTRACT_TEETH + 1
+                elif (option == 'DISTRACT_CHEWING'):
+                  DISTRACT_CHEWING = DISTRACT_CHEWING + 1
+                elif (option == 'DISTRACT_MUSIC'):
+                  DISTRACT_MUSIC = DISTRACT_MUSIC + 1
+                elif (option == 'DISTRACT_WEB'):
+                  DISTRACT_WEB = DISTRACT_WEB + 1
+                elif (option == 'DISTRACT_TALKING'):
+                  DISTRACT_TALKING = DISTRACT_TALKING + 1
+                elif (option == 'DISTRACT_PHONE'):
+                  DISTRACT_PHONE = DISTRACT_PHONE + 1
+                elif (option == 'DISTRACT_SHOWER'):
+                  DISTRACT_SHOWER = DISTRACT_SHOWER + 1
+                elif (option == 'DISTRACT_GAME'):
+                  DISTRACT_GAME = DISTRACT_GAME + 1
+                elif (option == 'DISTRACT_APPLE'):
+                  DISTRACT_APPLE = DISTRACT_APPLE + 1
+                elif (option == 'DISTRACT_VEGETABLES'):
+                  DISTRACT_VEGETABLES = DISTRACT_VEGETABLES + 1
+                elif (option == 'DISTRACT_MOVE'):
+                  DISTRACT_MOVE = DISTRACT_MOVE + 1
+                elif (option == 'DISTRACT_JUICE'):
+                  DISTRACT_JUICE = DISTRACT_JUICE + 1
+                elif (option == 'DISTRACT_EXERCISING'):
+                  DISTRACT_EXERCISING = DISTRACT_EXERCISING + 1
+                else:
+                  DISTRACT_PLAYING = DISTRACT_PLAYING + 1
+              groupallmotivechartData = {
+                   'labels': ['Walking', 'Water', 'Teeth', 'Chewing', 'Music', 'Web', 'Talking', 'Phone', 'Shower','Relaxing','Game','Apple','Vegetables','Move','Juice','Excercising','Playing'],
+            'datasets': [{
+            'label': 'Distraction Behavior',
+            'data': [DISTRACT_WALKING, DISTRACT_WATER, DISTRACT_TEETH, DISTRACT_CHEWING, DISTRACT_MUSIC, DISTRACT_WEB, DISTRACT_TALKING, DISTRACT_PHONE,
+                     DISTRACT_SHOWER, DISTRACT_RELAXING, DISTRACT_GAME, DISTRACT_APPLE, DISTRACT_VEGETABLES, DISTRACT_MOVE, DISTRACT_JUICE, DISTRACT_EXERCISING, DISTRACT_PLAYING ],
+            'backgroundColor': [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(155, 192, 192, 0.2)',
+              'rgba(75, 102, 255, 0.2)',
+              'rgba(95, 159, 64, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(155, 192, 192, 0.2)',
+              'rgba(75, 102, 255, 0.2)',
+              'rgba(95, 159, 64, 0.2)'
+            ],
+            'borderColor': [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(253, 92, 92, 1)',
+              'rgba(92, 102, 255, 1)',
+              'rgba(55, 159, 64, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(253, 92, 92, 1)',
+              'rgba(92, 102, 255, 1)',
+              'rgba(55, 159, 64, 1)'
+            ]
+          }]}
+        return Response(groupallmotivechartData)
+
+    if (gid != None):
+        groupusers = User.objects.filter(gid=gid).values('id')
+
+        for id in groupusers:
+          groupusersdata = Data.objects.filter(user=id['id'], clz='jdfbots.chatbot.cessation').values(
+            'value').first()
+
+          # if(groupusersdata == None):
+          #    datalist.append(groupusersdata)
+          #    totalcigars.append(0)
+
+          if (groupusersdata != None):
+
+            datas = groupusersdata['value']
+            jsondata = json.loads(datas)
+            cigars = jsondata['helped']
+
+            for element in cigars:
+              option = element['distraction']
+              if (option == 'DISTRACT_WALKING'):
+                DISTRACT_WALKING = DISTRACT_WALKING + 1
+              elif (option == 'DISTRACT_WATER'):
+                DISTRACT_WATER = DISTRACT_WATER + 1
+              elif (option == 'DISTRACT_TEETH'):
+                DISTRACT_TEETH = DISTRACT_TEETH + 1
+              elif (option == 'DISTRACT_CHEWING'):
+                DISTRACT_CHEWING = DISTRACT_CHEWING + 1
+              elif (option == 'DISTRACT_MUSIC'):
+                DISTRACT_MUSIC = DISTRACT_MUSIC + 1
+              elif (option == 'DISTRACT_WEB'):
+                DISTRACT_WEB = DISTRACT_WEB + 1
+              elif (option == 'DISTRACT_TALKING'):
+                DISTRACT_TALKING = DISTRACT_TALKING + 1
+              elif (option == 'DISTRACT_PHONE'):
+                DISTRACT_PHONE = DISTRACT_PHONE + 1
+              elif (option == 'DISTRACT_SHOWER'):
+                DISTRACT_SHOWER = DISTRACT_SHOWER + 1
+              elif (option == 'DISTRACT_GAME'):
+                DISTRACT_GAME = DISTRACT_GAME + 1
+              elif (option == 'DISTRACT_APPLE'):
+                DISTRACT_APPLE = DISTRACT_APPLE + 1
+              elif (option == 'DISTRACT_VEGETABLES'):
+                DISTRACT_VEGETABLES = DISTRACT_VEGETABLES + 1
+              elif (option == 'DISTRACT_MOVE'):
+                DISTRACT_MOVE = DISTRACT_MOVE + 1
+              elif (option == 'DISTRACT_JUICE'):
+                DISTRACT_JUICE = DISTRACT_JUICE + 1
+              elif (option == 'DISTRACT_EXERCISING'):
+                DISTRACT_EXERCISING = DISTRACT_EXERCISING + 1
+              else:
+                DISTRACT_PLAYING = DISTRACT_PLAYING + 1
+            groupallmotivechartData = {
+                'labels': ['Walking', 'Water', 'Teeth', 'Chewing', 'Music', 'Web', 'Talking', 'Phone', 'Shower',
+                           'Relaxing', 'Game', 'Apple', 'Vegetables', 'Move', 'Juice', 'Excercising', 'Playing'],
+                'datasets': [{
+                  'label': 'Distraction Behavior',
+                  'data': [DISTRACT_WALKING, DISTRACT_WATER, DISTRACT_TEETH, DISTRACT_CHEWING, DISTRACT_MUSIC,
+                           DISTRACT_WEB, DISTRACT_TALKING, DISTRACT_PHONE,
+                           DISTRACT_SHOWER, DISTRACT_RELAXING, DISTRACT_GAME, DISTRACT_APPLE, DISTRACT_VEGETABLES,
+                           DISTRACT_MOVE, DISTRACT_JUICE, DISTRACT_EXERCISING, DISTRACT_PLAYING],
+                  'backgroundColor': [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(155, 192, 192, 0.2)',
+                    'rgba(75, 102, 255, 0.2)',
+                    'rgba(95, 159, 64, 0.2)'
+                  ],
+                  'borderColor': [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(253, 92, 92, 1)',
+                    'rgba(92, 102, 255, 1)',
+                    'rgba(55, 159, 64, 1)'
+                  ]
+                }]}
+          else:
+            groupallmotivechartData = {
+              'labels': ['Walking', 'Water', 'Teeth', 'Chewing', 'Music', 'Web', 'Talking', 'Phone', 'Shower',
+                         'Relaxing', 'Game', 'Apple', 'Vegetables', 'Move', 'Juice', 'Excercising', 'Playing'],
+              'datasets': [{
+                'label': 'Distraction Behavior',
+                'data': [DISTRACT_WALKING, DISTRACT_WATER, DISTRACT_TEETH, DISTRACT_CHEWING, DISTRACT_MUSIC,
+                         DISTRACT_WEB, DISTRACT_TALKING, DISTRACT_PHONE,
+                         DISTRACT_SHOWER, DISTRACT_RELAXING, DISTRACT_GAME, DISTRACT_APPLE, DISTRACT_VEGETABLES,
+                         DISTRACT_MOVE, DISTRACT_JUICE, DISTRACT_EXERCISING, DISTRACT_PLAYING],
+                'backgroundColor': [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(155, 192, 192, 0.2)',
+                  'rgba(75, 102, 255, 0.2)',
+                  'rgba(95, 159, 64, 0.2)'
+                ],
+                'borderColor': [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(253, 92, 92, 1)',
+                  'rgba(92, 102, 255, 1)',
+                  'rgba(55, 159, 64, 1)'
+                ]
+              }]}
+            return Response(groupallmotivechartData)
+
+        return Response(groupallmotivechartData)
+    else:
+            groupallmotivechartData = {
+              'labels': ['Walking', 'Water', 'Teeth', 'Chewing', 'Music', 'Web', 'Talking', 'Phone', 'Shower',
+                         'Relaxing', 'Game', 'Apple', 'Vegetables', 'Move', 'Juice', 'Excercising', 'Playing'],
+              'datasets': [{
+                'label': 'Distraction Behavior',
+                'data': [DISTRACT_WALKING, DISTRACT_WATER, DISTRACT_TEETH, DISTRACT_CHEWING, DISTRACT_MUSIC,
+                         DISTRACT_WEB, DISTRACT_TALKING, DISTRACT_PHONE,
+                         DISTRACT_SHOWER, DISTRACT_RELAXING, DISTRACT_GAME, DISTRACT_APPLE, DISTRACT_VEGETABLES,
+                         DISTRACT_MOVE, DISTRACT_JUICE, DISTRACT_EXERCISING, DISTRACT_PLAYING],
+                'backgroundColor': [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(155, 192, 192, 0.2)',
+                  'rgba(75, 102, 255, 0.2)',
+                  'rgba(95, 159, 64, 0.2)'
+                ],
+                'borderColor': [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(253, 92, 92, 1)',
+                  'rgba(92, 102, 255, 1)',
+                  'rgba(55, 159, 64, 1)'
+                ]
+              }]}
+            return Response(groupallmotivechartData)
+
+
+
+
+
+
+
+
+
+

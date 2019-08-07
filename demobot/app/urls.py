@@ -2,6 +2,8 @@ from django.conf.urls import url
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from app import views
+from django.contrib import admin
+
 
 
 
@@ -10,6 +12,8 @@ router.register(r'group', views.GroupViewSet)
 router.register(r'user', views.UserViewSet)
 router.register(r'groupstat',views.GroupStatView)
 router.register(r'datastat', views.DataViewSet)
+router.register(r'userdetails',views.UserDetailViewSet)
+router.register(r'groupdetails',views.GroupView)
 
 
 
@@ -31,6 +35,8 @@ urlpatterns = [
   path('groupcontext/', views.GroupContextView.as_view()),
   path('groupmoodall/', views.GroupMoodAllView.as_view()),
   path('groupdesireall/', views.GroupDesireAllView.as_view()),
+  path('groupmotivationall/', views.GroupMotivationAllView.as_view()),
+  #path('admin/',admin.site.urls)
 
 
 

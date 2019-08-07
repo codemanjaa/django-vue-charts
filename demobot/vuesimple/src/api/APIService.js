@@ -88,12 +88,13 @@ export class APIService {
     return axios.get(url).then(response => response.data);
 
   }
-/*
-   getGroupMood(id) {
-    const url = `${API_URL}/api/groupmood/${id}`;
-    return axios.get(url).then(response => response.data);
-  }
-*/
+
+  /*
+     getGroupMood(id) {
+      const url = `${API_URL}/api/groupmood/${id}`;
+      return axios.get(url).then(response => response.data);
+    }
+  */
 
   getGroupTotal() {
 
@@ -132,7 +133,7 @@ export class APIService {
     return axios.get(url).then(response => response.data);
   }
 
- getGroupMoodAll() {
+  getGroupMoodAll() {
     const url = `${API_URL}/api/groupmoodall/`;
     return axios.get(url).then(response => response.data);
   }
@@ -142,13 +143,24 @@ export class APIService {
     return axios.get(url).then(response => response.data);
   }
 
-   getGroupDesireAll(id) {
+  getGroupDesireAll(id) {
     const url = `${API_URL}/api/groupdesireall/${id}`;
     return axios.get(url).then(response => response.data);
   }
 
+  getGroupMotivationAll(id) {
+    const url = `${API_URL}/api/groupmotivationall/${id}`;
+    return axios.get(url).then(response => response.data);
+  }
 
+  getUserDetails(id) {
+    const url = `${API_URL}/api/userdetails/${id}`;
+    return axios.get(url).then(response => response.data)
+  }
 
-
+  getGroupDetails(id) {
+    const url = `${API_URL}/api/groupdetails/${id}`;
+     return axios.get(url).then(response => response.data);
+  }
 
 }

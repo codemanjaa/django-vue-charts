@@ -4,6 +4,7 @@ import GroupGadget from './component/GroupGadget.vue'
 import UserProfile from './component/UserProfile'
 import Welcome from "./component/Welcome";
 import UserDetails from "./component/UserDetails";
+import GroupSetting from "./component/GroupSetting";
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
     {
       path: '/userdetails',
       component: UserDetails
+    },
+    {
+      path: '/groupsetting',
+      component: GroupSetting
     }
   ]
 })
