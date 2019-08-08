@@ -1,3 +1,4 @@
+from django.contrib.auth import user_logged_out
 from django.contrib.auth.models import Group
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
@@ -8,7 +9,7 @@ from .serializers import GroupSerializer, UserSerializer, GroupStatSerializer, G
   GroupGadgetSerializer, DataSerializer
 from rest_framework.response import Response
 from .models import Group, User, Data
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from django.contrib.auth.decorators import login_required
 
 
@@ -803,7 +804,38 @@ class UserDistractChartView(APIView):
       moodbored = 0
 
       if (usercigar == None):
-        return Response(None)
+         usermoodchartData = {
+          'labels': ['Stressed', 'Tired', 'Neutral', 'Worried', 'Angry', 'Sad', 'Happy', 'Relaxed', 'Bored'],
+          'datasets': [{
+            'label': 'Mood Behavior',
+            'data': [moodstressed, moodtired, moodneutral, moodworried, moodangry, moodsad, moodhappy, moodrelaxed,
+                     moodbored],
+            'backgroundColor': [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(155, 192, 192, 0.2)',
+              'rgba(75, 102, 255, 0.2)',
+              'rgba(95, 159, 64, 0.2)'
+            ],
+            'borderColor': [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(253, 92, 92, 1)',
+              'rgba(92, 102, 255, 1)',
+              'rgba(55, 159, 64, 1)'
+            ]
+          }]}
+         return Response(usermoodchartData)
+
+        #return Response(None)
 
       if (usercigar != None):
         datas = usercigar['value']
@@ -1898,11 +1930,37 @@ class GroupMotivationAllView(APIView):
             return Response(groupallmotivechartData)
 
 
+  def logout(request):
+    """
+    Removes the authenticated user's ID from the request and flushes their
+    session data.
+    """
+    # Dispatch the signal before the user is logged out so the receivers have a
+    # chance to find out *who* logged out.
+    user = getattr(request, 'user', None)
+    if hasattr(user, 'is_authenticated') and not user.is_authenticated():
+      user = None
+    user_logged_out.send(sender=user.__class__, request=request, user=user)
+
+    request.session.flush()
+    if hasattr(request, 'user'):
+      from django.contrib.auth.models import AnonymousUser
+      request.user = AnonymousUser()
 
 
+class UpdatePhase(generics.UpdateAPIView):
+  queryset = Group.objects.all()
+  serializer_class = GroupSerializer
 
 
+  def update(self, request, *args, **kwargs):
+        group = self.get_object()
+        group.name = request.data.get("state")
+        group.save()
 
+        serializer = self.get_serializer(group)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
 
-
+        return Response(serializer.data)
 

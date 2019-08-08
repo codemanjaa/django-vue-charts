@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div class="container" v-if="userdetailsloaded" id="showtime" ref="showtime">
+    <div class="container showtime" v-if="userdetailsloaded" id="showtime" ref="showtime">
 
       <div class="row" style="margin-top: 25px">
         <div class="col-12">
@@ -261,9 +261,10 @@
             //UserMoodContainer.methods.loadData(id)
             this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id', id)
             this.usermoodstas = data
-            this.userloaded = true
 
-            console.log('User mood data ' + data)
+            // console.log('mood stats.... '+this.usermoodstas.datasets[0].data)
+
+
           });
           apiService.getUserAlone('?id=' + id).then(data => {
             this.useralonestats = data
@@ -289,6 +290,15 @@
 
           });
         }
+
+
+          window.scrollTo({
+            top: 650,
+            left: 100,
+            behavior: 'smooth'
+          });
+
+
 
         console.log('This is a retrieved user id: ' + id);
 

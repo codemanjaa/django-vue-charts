@@ -29,7 +29,7 @@ class Group(models.Model):
     created_at = models.DateTimeField(null= True)
 
     class Meta:
-        app_label = 'primary'
+        app_label = 'app'
         managed = True
         db_table = 'group'
 
@@ -48,7 +48,7 @@ class User(models.Model):
     gid = models.ForeignKey(Group, models.DO_NOTHING, db_column='gid')
 
     class Meta:
-      app_label = 'primary'
+      app_label = 'app'
       managed = False
       db_table = 'user'
 
@@ -65,7 +65,7 @@ class Data(models.Model):
     #value = JSONField()
 
     class Meta:
-      app_label = 'primary'
+      app_label = 'app'
       managed = False
       db_table = 'data'
       unique_together = (('user', 'clz'), )
@@ -121,7 +121,7 @@ class PrimaryRouter():
     """
     Attempts to read auth models go to auth_db.
     """
-    if model._meta.app_label == 'primary':
+    if model._meta.app_label == 'app':
       return 'jdf_db'
     return None
 
@@ -129,7 +129,7 @@ class PrimaryRouter():
     """
     Attempts to write auth models go to auth_db.
     """
-    if model._meta.app_label == 'primary':
+    if model._meta.app_label == 'app':
       return 'jdf_db'
     return None
 
@@ -137,8 +137,8 @@ class PrimaryRouter():
     """
     Allow relations if a model in the auth app is involved.
     """
-    if obj1._meta.app_label == 'primary' or \
-      obj2._meta.app_label == 'primary':
+    if obj1._meta.app_label == 'app' or \
+      obj2._meta.app_label == 'app':
       return True
     return None
 
@@ -148,7 +148,7 @@ class PrimaryRouter():
     database.
     """
 
-    if app_label == 'primary':
+    if app_label == 'app':
       return db == 'jdf_db'
     return None
 

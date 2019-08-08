@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.urls import path, include
 from app import views
 from django.views.generic import TemplateView
@@ -22,19 +23,21 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.admin.views.decorators import staff_member_required
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('api/', include(router.urls))
-    path('', staff_member_required(TemplateView.as_view(template_name='index.html'))),
-   #path('',  TemplateView.as_view(template_name='index.html')),
-    path('api/', include('app.urls')),
-    #url(r'^$',
-     #   TemplateView.as_view(template_name='index.html'),
-      #  name='uHome'
-       # ),
-    url(r'^admin/', admin.site.urls),
+  # path('admin/', admin.site.urls),
+  # path('api/', include(router.urls))
+  path('', staff_member_required(TemplateView.as_view(template_name='index.html'))),
+  # path('',        login_required(TemplateView.as_view(template_name='index.html'))),
+  # path('',user_passes_test(lambda u:u.is_staff, login_url=TemplateView.as_view(template_name='index.html'))),
+  # path('',  TemplateView.as_view(template_name='index.html')),
+  path('api/', include('app.urls')),
+  # url(r'^$',
+  #   TemplateView.as_view(template_name='index.html'),
+  #  name='uHome'
+  # ),
+  url(r'^admin/', admin.site.urls),
+  #url(r'^dashboard/', staff_member_required(TemplateView.as_view(template_name='index.html'))),
 
-#    url(r'^api/group', views.GroupViewSet.as_view()),
-
+  #    url(r'^api/group', views.GroupViewSet.as_view()),
 
 ]
-#urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += staticfiles_urlpatterns()

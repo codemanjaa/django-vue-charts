@@ -36,6 +36,9 @@ urlpatterns = [
   path('groupmoodall/', views.GroupMoodAllView.as_view()),
   path('groupdesireall/', views.GroupDesireAllView.as_view()),
   path('groupmotivationall/', views.GroupMotivationAllView.as_view()),
+  path('updatephase/', views.UpdatePhase.as_view()),
+
+
   #path('admin/',admin.site.urls)
 
 

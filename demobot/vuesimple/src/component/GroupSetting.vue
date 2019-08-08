@@ -55,7 +55,8 @@
       return {
         groups: [],
         currentGroup: {},
-        message: ''
+        message: '',
+
       }
     },
     methods: {
@@ -73,20 +74,30 @@
 
         apiService.getGroupDetails('?id=' + id).then((data) => {
           this.currentGroup = data
-          let curstate = this.currentGroup[0].state
-
-          if (curstate == 'cessation') {
-            alert('You do not have any Phase to move in')
+          var group = this.currentGroup[0]
+          let curPhase = group.state
+          let nextPhase;
+          if (curPhase == 'cessation') {
+            alert('Group does not have any Phase to move in')
             this.message = 'Sorry..You are in Final phase'
-          } else if (curstate == 'tracker') {
-            this.message = 'span class="badge badge-pill badge-success">Success</span'
-          } else if (curstate == 'recruitment') {
-            this.message = 'Recruitment to Tracker'
+          } else if (curPhase == 'tracker') {
+            nextPhase = 'profile'
+            group.state = nextPhase
+            this.message = 'Loaded to profile phase'
+          } else if (curPhase == 'profile') {
+            nextPhase = 'cessation'
+            group.state = nextPhase
+            this.message = 'Loaded to Cessation phase'
+          } else if (curPhase == 'recruitment') {
+            nextPhase = 'tracker'
+            group.state = nextPhase
+            this.message = 'Loaded to Tracker phase'
           } else {
             this.message = 'Processing...'
           }
+          apiService.updateGroup(group)
 
-          console.log(curstate)
+          console.log(curPhase)
         });
 
 

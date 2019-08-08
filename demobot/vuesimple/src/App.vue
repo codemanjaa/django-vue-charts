@@ -91,11 +91,27 @@
             icon: 'fa fa-chart-area',
             child: [
               {
-                title: 'State Management ',
+                title: 'Group Phase Management ',
                 icon: 'fa fa-chart-area',
                 href: '/groupsetting',
 
               },
+
+
+
+            ]
+          },
+          {
+            title: 'Logout',
+            icon: 'fa fa-chart-area',
+            href: '/logout',
+            child: [
+              {
+
+
+              },
+
+
 
             ]
           }

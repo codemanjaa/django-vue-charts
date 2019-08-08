@@ -163,4 +163,15 @@ export class APIService {
      return axios.get(url).then(response => response.data);
   }
 
+  updateGroup(group){
+
+    //const url = `${API_URL}/api/group/${id}`;
+    const url = `${API_URL}/api/group/${group.id}/`;
+    return axios.put(url, group).then(response => response.data);
+    console.log(group)
+
+   // return axios.patch(url, data).then(response => response.data);
+}
+
+
 }
