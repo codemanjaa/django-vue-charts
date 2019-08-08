@@ -81,7 +81,7 @@
 
       <div class="row" style="margin-top: 25px">
         <div class="col-12">
-          <div style="background-color: #E8EFF0; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
+          <div style="background-color: #E8EFF0; margin-top: 10px; width: available; margin-bottom: 5px; padding: 5px;">
 
             <h6 class="card-title">User Details</h6>
           </div>
@@ -110,22 +110,56 @@
               <input type="text" readonly class="form-control" v-bind:value="userdetails[0].facebook_id">
             </div>
             <label class="col-sm-4 col-form-label">Last Interaction on: </label>
-            <div class="col-sm-8" style="margin-bottom: 2px;">
+            <div class="col-sm-8" style="margin-bottom: 2px;margin-bottom: 5px;">
               <input type="text" readonly class="form-control" v-bind:value="userdetails[0].last_interaction">
             </div>
-            <label class="col-sm-4 col-form-label">Group ID: </label>
-            <div class="col-sm-4" style="margin-bottom: 2px;">
-              <input type="text" class="form-control" v-bind:value="userdetails[0].gid">
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 2px;">
-              <button type="submit">Change</button>
-            </div>
+            <div style="background-color: goldenrod; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
+            <h6 class="card-title">Group Modification</h6>
+          </div>
+            <div style="background-color: #86989B" class="col-sm-12">
+
+              <div class="row">
+                <label class="col-sm-4 col-form-label">Group ID: </label>
+                <br/>
+                <div class="col-sm-2" style="margin-bottom: 2px;">
+                  <input type="text" readonly align="center" class="form-control" v-bind:value="userdetails[0].gid">
+                </div>
+                <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 5px">
+
+
+                  <select class="form-control form-control-sm btn-secondary" name="gplist" id="gplist" v-model="selectedgid"
+                          v-on:change="getgid">
+                    <option value="" disabled>{{userdetails[0].gid}}</option>
+                    <option v-for="group in groups" v-bind:value="group.id">
+                      {{group.id}} - {{group.name}}
+                    </option>
+                  </select>
+
+                </div>
+                <div class="col-sm-2" style="margin-bottom: 10px; margin-top: 5px">
+                  <input type="hidden" name="gid" v-bind:value="userdetails[0].id">
+                  <button class="btn-primary" @click="modify(userdetails[0].id)">Move</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
-
+      <button v-on:click="isHidden = !isHidden">Show Notification</button>
+      <br/>
+      <div v-if="!isHidden" class="card border-warning mb-3"
+           style="max-width: 48rem;">
+        <div class="card-header">Visual Notification Alert</div>
+        <div class="card-body text-warning">
+          <h5 class="card-title">Graphic inconsistent</h5>
+          <p class="card-text">Please kindly note that, due to the lack of availabe data, you might encounter with
+            some empty charts or visual inconsitency in the Stats area below.
+            <button v-on:click="isHidden = !isHidden">Hide me</button>
+          </p>
+        </div>
+      </div>
 
       <div class="row" style="margin-top: 25px">
         <div class="col-6">
@@ -213,8 +247,10 @@
         userdistractionstats: {},
         userdetails: {},
         userdetailsloaded: false,
-        userloaded: false
-
+        userloaded: false,
+        isHidden: false,
+        selectedgid: '',
+        user: {},
 
       };
 
@@ -292,12 +328,11 @@
         }
 
 
-          window.scrollTo({
-            top: 650,
-            left: 100,
-            behavior: 'smooth'
-          });
-
+        window.scrollTo({
+          top: 650,
+          left: 100,
+          behavior: 'smooth'
+        });
 
 
         console.log('This is a retrieved user id: ' + id);
@@ -328,6 +363,32 @@
 
 
       },
+      getgid: function () {
+        var self = this
+        console.log(self.groups);
+        var gid = this.selectedgid;
+        console.log(gid);
+
+
+      },
+
+      modify: function (id) {
+        var user = this.userdetails[0]
+        let gid = this.selectedgid
+        let uid = id
+
+        if(gid == user.gid){
+          alert('Please select the different group id')
+        }
+        else{
+          user.gid = gid
+           apiService.updateUser(user)
+        }
+
+        console.log(user)
+
+
+      }
 
 
     },

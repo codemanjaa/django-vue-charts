@@ -10,6 +10,7 @@ from django.contrib import admin
 router = DefaultRouter()
 router.register(r'group', views.GroupViewSet)
 router.register(r'user', views.UserViewSet)
+router.register(r'userset', views.UserSet)
 router.register(r'groupstat',views.GroupStatView)
 router.register(r'datastat', views.DataViewSet)
 router.register(r'userdetails',views.UserDetailViewSet)

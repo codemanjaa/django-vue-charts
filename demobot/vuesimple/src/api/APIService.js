@@ -160,18 +160,25 @@ export class APIService {
 
   getGroupDetails(id) {
     const url = `${API_URL}/api/groupdetails/${id}`;
-     return axios.get(url).then(response => response.data);
+    return axios.get(url).then(response => response.data);
   }
 
-  updateGroup(group){
+  updateGroup(group) {
 
     //const url = `${API_URL}/api/group/${id}`;
     const url = `${API_URL}/api/group/${group.id}/`;
     return axios.put(url, group).then(response => response.data);
     console.log(group)
 
-   // return axios.patch(url, data).then(response => response.data);
-}
+    // return axios.patch(url, data).then(response => response.data);
+  }
+
+  updateUser(user) {
+
+    const url = `${API_URL}/api/userset/${user.id}/`;
+    return axios.put(url, user).then(response => response.data);
+    console.log(user)
+  }
 
 
 }

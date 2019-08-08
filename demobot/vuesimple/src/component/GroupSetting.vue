@@ -37,7 +37,15 @@
       </table>
     </div>
     <div>
-      <{{message}}>
+      <div v-if="messageloaded" class="card text-white  bg-success mb-3 {class}" style="max-width: 50rem;">
+        <div class="card-header">Phase Notification</div>
+        <div class="card-body">
+          <h5 class="card-title">{{message}}</h5>
+          <p class="card-text">
+            Please kindly refer the documentation for more details about the phase setting.
+            </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -56,6 +64,8 @@
         groups: [],
         currentGroup: {},
         message: '',
+        messageloaded: false,
+        class: ''
 
       }
     },
@@ -79,19 +89,25 @@
           let nextPhase;
           if (curPhase == 'cessation') {
             alert('Group does not have any Phase to move in')
-            this.message = 'Sorry..You are in Final phase'
+            this.message = group.name + ' in the Final phase'
+            this.messageloaded = true
+            this.class = 'card text-white bg-success mb-3'
+
           } else if (curPhase == 'tracker') {
             nextPhase = 'profile'
             group.state = nextPhase
             this.message = 'Loaded to profile phase'
+            this.messageloaded = true
           } else if (curPhase == 'profile') {
             nextPhase = 'cessation'
             group.state = nextPhase
             this.message = 'Loaded to Cessation phase'
+            this.messageloaded = true
           } else if (curPhase == 'recruitment') {
             nextPhase = 'tracker'
             group.state = nextPhase
             this.message = 'Loaded to Tracker phase'
+            this.messageloaded = true
           } else {
             this.message = 'Processing...'
           }
