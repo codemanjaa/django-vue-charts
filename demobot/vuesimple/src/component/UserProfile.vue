@@ -51,7 +51,10 @@
               <td>{{user.last_name}}</td>
               <td>{{user.last_interaction}}</td>
               <td>
-                <button class="btn-secondary" @click="viewProfile(user.id)">View</button>
+                <button class="btn-secondary" @click="viewProfile(user.id)">View/Modify</button>
+              </td>
+              <td>
+                <button class="btn btn-danger" @click="block(user.id)">Block</button>
               </td>
             </tr>
             <tr>
@@ -115,8 +118,8 @@
             </div>
             <div style="background-color: goldenrod; margin-top: 10px; width: 300px; margin-bottom: 5px; padding: 5px;">
 
-            <h6 class="card-title">Group Modification</h6>
-          </div>
+              <h6 class="card-title">Group Modification</h6>
+            </div>
             <div style="background-color: #86989B" class="col-sm-12">
 
               <div class="row">
@@ -128,9 +131,10 @@
                 <div class="col-sm-4" style="margin-bottom: 10px; margin-top: 5px">
 
 
-                  <select class="form-control form-control-sm btn-secondary" name="gplist" id="gplist" v-model="selectedgid"
+                  <select class="form-control form-control-sm btn-secondary" name="gplist" id="gplist"
+                          v-model="selectedgid"
                           v-on:change="getgid">
-                    <option value="" disabled>{{userdetails[0].gid}}</option>
+                    <!--<option value="" disabled>{{userdetails[0].gid}}</option>-->
                     <option v-for="group in groups" v-bind:value="group.id">
                       {{group.id}} - {{group.name}}
                     </option>
@@ -357,6 +361,7 @@
             console.log(data)
             this.groupusers = data;
           });
+          this.userdetailsloaded = false
 
 
         }
@@ -377,12 +382,11 @@
         let gid = this.selectedgid
         let uid = id
 
-        if(gid == user.gid){
+        if (gid == user.gid) {
           alert('Please select the different group id')
-        }
-        else{
+        } else {
           user.gid = gid
-           apiService.updateUser(user)
+          apiService.updateUser(user)
         }
 
         console.log(user)

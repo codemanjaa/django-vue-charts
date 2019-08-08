@@ -41,3 +41,6 @@ urlpatterns = [
 
 ]
 # urlpatterns += staticfiles_urlpatterns()
+admin.site.site_header = "J'arrete de fumer - Help Admin"
+admin.site.site_title = "J'arrete de fumer Admin Portal"
+admin.site.index_title = "Welcome to J'arrete de fumer Portal"

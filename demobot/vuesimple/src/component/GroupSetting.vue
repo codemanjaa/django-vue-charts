@@ -27,7 +27,7 @@
           <td>{{group.created_at}}</td>
           <td>{{group.state}}</td>
           <td>
-            <button class="btn-secondary" @click="setState(group.id)">Next Phase</button>
+            <button class="btn btn-warning" @click="setState(group.id)">Next Phase</button>
           </td>
         </tr>
         <tr>
