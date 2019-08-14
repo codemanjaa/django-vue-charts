@@ -1,4 +1,5 @@
-from django.contrib.auth import user_logged_out
+from django.contrib.auth import user_logged_out, logout
+
 from django.contrib.auth.models import Group
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
@@ -1966,4 +1967,28 @@ class UpdatePhase(generics.UpdateAPIView):
         self.perform_update(serializer)
 
         return Response(serializer.data)
+
+
+
+class GroupLastId(APIView):
+   def get(self, request):
+
+     last = Group.objects.values_list('id', flat=True)
+     if(last == None):
+       newid = '1'
+     else:
+      idlist = list(last)
+      idlist.reverse()
+      newid= str(int(idlist[0]) + 1)
+
+     return Response({'id':newid})
+
+#class Logout_View(APIView):
+def logout_view(self, request):
+    logout(request)
+
+
+
+
+
 

@@ -126,7 +126,7 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-12">
-        <div v-if="chartactive"
+        <div v-if="groupdesireloaded"
              style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
           <h6 class="card-title">Group Desire Stats</h6>
@@ -140,7 +140,7 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-12">
-        <div v-if="chartactive"
+        <div v-if="groupmotivationloaded"
              style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
           <h6 class="card-title">Group Motivation Stats</h6>
@@ -157,7 +157,7 @@
         <div v-if="chartactive"
              style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Context Stats</h6>
+          <h6 class="card-title">All Group Context Stats</h6>
         </div>
 
         <group-context-container v-if="chartactive">
@@ -171,10 +171,10 @@
 
     <div class="row" style="margin-top: 25px">
       <div class="col-12">
-        <div v-if="chartactive"
+        <div v-if="groupmoodloaded"
              style="background-color: #E8EFF0; margin-top: 10px; width: 600px; margin-bottom: 5px; padding: 5px;">
 
-          <h6 class="card-title">Mood Doughnut Stats</h6>
+          <h6 class="card-title">All Group Mood Doughnut Stats</h6>
         </div>
 
         <mood-doughnut v-if="groupmoodloaded" :chartData="groupmoodchardata"
@@ -333,6 +333,17 @@
             this.groupgadg = data
             this.totalcigarloaded = true
             this.chartactive = true
+
+            if (this.groupgadg.total_user == 0) {
+              console.log('This is working')
+                this.groupmoodloaded = false;
+                this.groupdesireloaded = false;
+                this.chartgenderloaded = false;
+                this.totalcigarloaded = false;
+                this.chartactive = false;
+                this.groupmotivationloaded = false;
+            }
+
           });
 
 

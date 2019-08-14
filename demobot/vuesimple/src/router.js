@@ -5,6 +5,8 @@ import UserProfile from './component/UserProfile'
 import Welcome from "./component/Welcome";
 import UserDetails from "./component/UserDetails";
 import GroupSetting from "./component/GroupSetting";
+import CreateNewGroup from "./component/CreateNewGroup"
+import Logout from "./component/Logout";
 
 Vue.use(Router)
 
@@ -30,6 +32,15 @@ export default new Router({
     {
       path: '/groupsetting',
       component: GroupSetting
+    },
+    {
+      path: '/creategroup',
+      component: CreateNewGroup
+    },
+    {
+       path: '/logout',
+      component: Logout
     }
+
   ]
 })

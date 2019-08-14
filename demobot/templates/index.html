@@ -6,11 +6,16 @@
     <title>Admin Panel - Stop Smoking</title>
 </head>
 <body>
+{% block content %}
+{% if user.is_authenticated %}
+  Hello {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
 
 <div id="app"></div>
 {% render_bundle 'main' %}
 <div align="right">
 </div>
+{% endif %}
 
 </body>
 </html>

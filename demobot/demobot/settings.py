@@ -140,7 +140,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Fixture setting
 
-LOGIN_URL='/admin/login/'
+#LOGIN_URL='/admin/login/'
+LOGIN_URL='/admin/login/?next=/dashboard/'
+LOGIN_REDIRECT_URL='dashboard'
+LOGOUT_REDIRECT_URL = '/dashboard'
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 

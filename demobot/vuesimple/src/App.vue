@@ -32,6 +32,8 @@
   import GroupStat from "./component/GroupStat";
   import GroupGadget from "./component/GroupGadget";
   import UserProfile from "./component/UserProfile"
+  import CreateNewGroup from "./component/CreateNewGroup";
+  import Logout from './component/Logout'
 
   export default {
 
@@ -75,9 +77,23 @@
           {
             title: 'Group Management',
             icon: 'fa fa-chart-area',
-            href: '/groups',
-            component: GroupGadget,
-            child: []
+           // href: '/groups',
+           // component: GroupGadget,
+            child: [
+              {
+                title: '--- Group Stats',
+                icon: 'fa fa-chart-area',
+                href: '/groups',
+                component: GroupGadget,
+              },
+              {
+                title: '--- Create New Group',
+                href: '/creategroup',
+                component: CreateNewGroup,
+              }
+
+
+            ]
           },
           {
             title: 'User Management',
@@ -91,12 +107,11 @@
             icon: 'fa fa-chart-area',
             child: [
               {
-                title: 'Group Phase Management ',
+                title: '---    Group Phase Management ',
                 icon: 'fa fa-chart-area',
                 href: '/groupsetting',
 
               },
-
 
 
             ]
@@ -105,19 +120,11 @@
             title: 'Logout',
             icon: 'fa fa-chart-area',
             href: '/logout',
-            child: [
-              {
 
-
-              },
-
-
-
-            ]
           }
         ]
       }
     },
-    components: {GroupGadget, GroupStat, GroupList, UserProfile}
+    components: {GroupGadget, GroupStat, GroupList, UserProfile, Logout}
   }
 </script>

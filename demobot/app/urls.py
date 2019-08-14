@@ -5,8 +5,6 @@ from app import views
 from django.contrib import admin
 
 
-
-
 router = DefaultRouter()
 router.register(r'group', views.GroupViewSet)
 router.register(r'user', views.UserViewSet)
@@ -38,7 +36,8 @@ urlpatterns = [
   path('groupdesireall/', views.GroupDesireAllView.as_view()),
   path('groupmotivationall/', views.GroupMotivationAllView.as_view()),
   path('updatephase/', views.UpdatePhase.as_view()),
-
+  path('lastid/', views.GroupLastId.as_view()),
+  #path('logout/', views.Logout_View.as_view()),
 
   #path('admin/',admin.site.urls)
 

@@ -173,11 +173,39 @@ export class APIService {
     // return axios.patch(url, data).then(response => response.data);
   }
 
+  createGroup(group) {
+
+    //const url = `${API_URL}/api/group/`;
+    const url = `${API_URL}/api/group/`;
+    return axios.post(url, group).then(response => response.data).catch(function (error ) {
+      alert('Error found: '+ error)
+      
+    });
+
+    console.log(group)
+
+    // return axios.patch(url, data).then(response => response.data);
+  }
+
+   getGroupLastId() {
+
+    const url = `${API_URL}/api/lastid/`;
+    return axios.get(url).then(response => response.data);
+
+  }
+
   updateUser(user) {
 
     const url = `${API_URL}/api/userset/${user.id}/`;
     return axios.put(url, user).then(response => response.data);
     console.log(user)
+  }
+
+  logout(){
+
+    const url = `${API_URL}/api/logout/`;
+
+
   }
 
 
