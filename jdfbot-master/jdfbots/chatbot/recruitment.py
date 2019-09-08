@@ -333,13 +333,17 @@ class End(State):
 
     @classmethod
     def on_event(cls, page, user, event):
+
         return Transition.MOVE("cessation.Wait")
+
         # t = i18n.translator(user)
         # page.send(
         #     user.facebook_id,
         #     t("Encore un peu de patience! La phase suivante n'a pas encore commencé 😉"),
         # )
         # return Transition.STAY
+
+
         # page.send(
         #     user.facebook_id,
         #     t(

@@ -302,6 +302,7 @@
             this.$store.dispatch('LOAD_USERMOODCONTAINER_WITH_id', id)
             this.usermoodstas = data
 
+
             // console.log('mood stats.... '+this.usermoodstas.datasets[0].data)
 
 
@@ -326,6 +327,11 @@
           apiService.getUserDetails('?id=' + id).then(data => {
             this.userdetails = data
             this.userdetailsloaded = true
+             window.scrollTo({
+              top: 650,
+              left: 100,
+              behavior: 'smooth'
+            });
             console.log(data)
 
           });
@@ -333,11 +339,10 @@
 
 
         window.scrollTo({
-          top: 650,
-          left: 100,
-          behavior: 'smooth'
-        });
-
+              top: 650,
+              left: 100,
+              behavior: 'smooth'
+            });
 
         console.log('This is a retrieved user id: ' + id);
 

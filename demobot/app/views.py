@@ -115,13 +115,9 @@ class GroupStatTest(viewsets.ReadOnlyModelViewSet):
   serializer_class = GroupTestSerializer
 
   def get_queryset(self):
-    # gid = '1' #self.request.query_params.get('gid')
-    # total_user = User.objects.filter(gid=gid).count()
-    # total_men = User.objects.filter(gender__startswith='SEX_M', gid=gid).count()
-    # total_women = User.objects.filter(gender__startswith='SEX_W', gid=gid).count()
-    # #total_user = User.objects.values('gid').annotate(total_user=Count('id'))
+
     return ("")
-  # return result
+  
 
 
 """Dashboard gadget contains the info about the group state, 
@@ -1983,8 +1979,8 @@ class GroupLastId(APIView):
 
      return Response({'id':newid})
 
-#class Logout_View(APIView):
-def logout_view(self, request):
+class Logout_View(APIView):
+  def logout_view(self, request):
     logout(request)
 
 

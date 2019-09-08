@@ -37,7 +37,7 @@ urlpatterns = [
   path('groupmotivationall/', views.GroupMotivationAllView.as_view()),
   path('updatephase/', views.UpdatePhase.as_view()),
   path('lastid/', views.GroupLastId.as_view()),
-  #path('logout/', views.Logout_View.as_view()),
+  path('logout/', views.Logout_View.as_view()),
 
   #path('admin/',admin.site.urls)
 

@@ -39,7 +39,9 @@ export default new Router({
     },
     {
        path: '/logout',
-      component: Logout
+       beforeEnter(to,from,next){
+         window.location = "/admin/logout"
+       }
     }
 
   ]

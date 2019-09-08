@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d6ff99b6-b079-435b-bafa-b27ed44a5bf6" name="vlhaislab-bsct.hevs.ch" url="http://vlhaislab-bsct.hevs.ch">
+        <fileTransfer host="vlhaislab-bsct.hevs.ch" port="21" rootFolder="/demo">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
