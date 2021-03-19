@@ -57,7 +57,7 @@ django-composite-foreignkey==1.1.0
 django-cors-headers==3.0.2
 django-leaflet==0.24.0
 django-webpack-loader==0.6.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 docutils==0.14
 entrypoints==0.2.3
 et-xmlfile==1.0.1
