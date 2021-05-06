@@ -66,7 +66,7 @@ fbmq==2.5.0
 filelock==3.0.10
 Fiona==1.8.6
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 Flask-Migrate==2.4.0
 Flask-SQLAlchemy==2.4.0
 folium==0.8.0
